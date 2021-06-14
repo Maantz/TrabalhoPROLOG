@@ -1,2 +1,0 @@
-# TrabalhoPROLOG
-WebSite ProLOG
