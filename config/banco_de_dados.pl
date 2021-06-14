@@ -1,11 +1,11 @@
 %Banco de dados
 
 %Coloque aqui todas as tabelas do banco.
-
+%inserir as outras tabelas no arquivo (bd/tabelas/...)
 tabela(chave).
 tabela(usuario).
 tabela(dentista).
-%inserir as outras tabelas no arquivo (bd/tabelas/...)
+
 
 
 %Não mexa daqui em diante

@@ -30,7 +30,11 @@
 %colocar a api de voces(by.:gustavo)
 :-load_files([  %API REST
               api1(dentistas),
-              api1(usuarios)
+              api1(usuarios),
+              api1(anameneses),
+              api1(convenios),
+              api1(pacientes),
+              api1(schedules)
               ],
               [ silent(true),
                 if(not_loaded) ]).
