@@ -10,14 +10,9 @@ entrada(_):-
         [ div(class(container),
               [ 
                 \html_requires(css('custom.css')),
-                %\titulo_da_pagina('Sistema para Gerenciamento de Agendamento de Clínica Odontológica'),
-                %\navegação('menu-topo'),
+                \navegacao('menu-topo'),
                 \propaganda
               ]) ]).
-
-%titulo_da_pagina(Titulo)-->
-    %html(div(class('text-center align-items-center w-100'),
-              %h1('display-3', Titulo))).
 
 propaganda -->
     html(div([ class='container-fluid' ],
@@ -48,12 +43,12 @@ home-->
 
 link_cadastroUsuario -->
     html(a([class(['nav-link']),
-            href('/cadastro')],
+            href('/usuario')],
             'Cadastro de Usuario')).
 
 link_cadastroDentista-->
     html(a([class(['nav-link']),
-            href('/cadastroDentista')],
+            href('/dentista')],
             'Cadastro de Dentista')).
 
 link_tabelaUsuario -->

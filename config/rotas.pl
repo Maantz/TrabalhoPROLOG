@@ -36,16 +36,11 @@ http:location(api1, api(v1), []).
 
 %Rotas do Frontend(editar aqui conforme formos avançando no frontend)
 :-http_handler(root(.), entrada,   []).
-%:- http_handler( root(.), pg_entrada:entrada, []).
 :- http_handler(root(home), home, []).
-%:- http_handler(root(cadastroUsuario), cadastroUsuario, []).
-:- http_handler(root(cadastroDentista), cadastroDentista, []).
+:- http_handler(root(pg_dentista), dentista, []).
+:-http_handler(root(pg_usuario), usuario, []).
 
-:-http_handler(root(cadastro), cadastro, []).
-:-http_handler(root(tab_usuarios), tab_usuarios, []).
-
-%% A página de cadastro de novos usuários
-%:- http_handler( root(cadastro), cadastro_usuario:cadastro, []).
+:-http_handler(root(tab_usuarios), tab_usuarios, []). %tabela de usuarios
 
 
 :- http_handler(api1(usuarios/Id), usuarios:usuarios(Metodo, Id),

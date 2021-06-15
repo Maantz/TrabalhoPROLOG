@@ -18,13 +18,10 @@
                 frontend(pg_paciente),
                 frontend(menu_topo),
                 frontend(icones),
-                frontend(cadastro_usuario),
-                frontend(cadastro_dentista)
 
               ],
               [ silent(true),
                 if(not_loaded) ]).
-e
 
 :-load_files([
               api1(dentistas),
