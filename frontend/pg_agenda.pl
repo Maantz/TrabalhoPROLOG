@@ -18,7 +18,7 @@ agenda(_Pedido) :-
                 \html_requires(js('bookmark.js')),
                 \html_requires(js('rest.js')),
                 h2('Cadastro de Horarios'),
-                \form_agenda
+                \form_agenda,
                 p(''),
                 \retornar
             ])
