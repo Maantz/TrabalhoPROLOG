@@ -4,7 +4,7 @@
 user:file_search_path(dir_base, 'C:/').
 
 
-user:file_search_path(trabalho, dir_base(trabalho)).
+user:file_search_path(trabalho, dir_base(trabalho_prolog)).
 
 
 user:file_search_path(config, trabalho(config)).

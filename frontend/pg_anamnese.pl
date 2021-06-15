@@ -15,7 +15,7 @@ anamnese(_Pedido):-
         [ title('Receitas - Paciente')],
         [div(class(container),
             [ 
-                \html_requires(js('bookmark.js')),
+                \html_requires(js('comum.js')),
                 \html_requires(js('rest.js')),
                 h2('Cadastro de Receitas'),
                 \form_anamnese,
@@ -36,12 +36,51 @@ form_anamnese -->
             [
                 \metodo_de_envio('POST'),
                 \campo(medicamento, 'Medicamento: ', text),
-                \campo(tiposangue, 'Tipo Sangue: ', text),
+                \campo(tiposangue, 'Tipo Sanguineo: ', text),
                 \campo(doenca, 'Doenca: ', text),
                 \campo(alergia, 'Alergia: ', text),
                 \campo(fumante, 'Fumante: ', text),
                 \campo(gestante, 'Gestante: ', text),
-                \enviar_ou_cancelar('/')
+                \enviar
             ]
             )
         ).
+
+
+editar_anamnese(AtomId, _Pedido):-
+    atom_number(AtomId, Anamnese_id),
+    ( anamnese:anamnese(Anamnese_id, Medicamento, TipoSangue, Doenca, Alergia, Fumante, Gestante)
+    ->
+    reply_html_page(
+        boot5rest,
+        [ title('Cadastro de Anamnese')],
+        [ div(class(container),
+              [ \html_requires(js('rest.js')),
+                \html_requires(js('comum.js')),
+                h1('Anamneses'),
+                \form_anamnese(Anamnese_id, Medicamento, TipoSangue, Doenca, Alergia, Fumante, Gestante)
+              ]) ])
+    ; throw(http_reply(not_found(Anamnese_id)))
+    ).
+
+
+form_anamnese(Anamnese_id, Medicamento, TipoSangue, Doenca, Alergia, Fumante, Gestante) -->
+    html(form([ id('anamnese-form'),
+                onsubmit("redirecionaResposta( event, '/' )"),
+                action('/api/v1/anamneses/~w' - Anamnese_id) ],
+              [ \metodo_de_envio('PUT'),
+                \campo_nao_editavel(anamnese_id, 'Anamnese_id', text, Anamnese_id),
+                \campo(Medicamento, 'Medicamento: ', text, Medicamento),
+                p(''),
+                \campo(TipoSangue, 'Tipo Sanguineo: ', text, TipoSangue),
+                p(''),
+                \campo(Doenca, 'Doenca: ', text, Doenca),
+                p(''),
+                \campo(Alergia, 'Alergia: ', text, Alergia),
+                p(''),
+                \campo(Fumante, 'Fumante: ', text, Fumante),
+                p(''),
+                \campo(Gestante, 'Gestante: ', text, Gestante),
+                p(''),
+                \enviar
+              ])).

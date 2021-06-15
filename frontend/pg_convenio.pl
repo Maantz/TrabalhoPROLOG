@@ -15,7 +15,7 @@ convenio(_Pedido) :-
         [div(class(container),
             [
                 \html_requires(js('rest.js')),
-                \html_requires(js('convenios.js')),
+                \html_requires(js('comum.js')),
                 h2('Cadastro de Novo Convenio'),
                 \form_convenio,
                 p(''),
@@ -45,28 +45,28 @@ form_convenio -->
 
 
 editar_convenio(AtomId, _Pedido):-
-    atom_number(AtomId, Id_conv),
-    ( convenio:convenio(Id_conv, CodConvenio, RazaoSocial)
+    atom_number(AtomId, Convenio_id),
+    ( convenio:convenio(Convenio_id, CodConvenio, RazaoSocial)
     ->
     reply_html_page(
         boot5rest,
         [ title('Cadastro de Novo Convenio')],
         [ div(class(container),
               [ \html_requires(js('rest.js')),
-                \html_requires(js('convenios.js')),
+                \html_requires(js('comum.js')),
                 h1('Convenios'),
-                \form_convenio(Id_conv, CodConvenio, RazaoSocial)
+                \form_convenio(Convenio_id, CodConvenio, RazaoSocial)
               ]) ])
-    ; throw(http_reply(not_found(Id_conv)))
+    ; throw(http_reply(not_found(Convenio_id)))
     ).
 
 
-form_convenio(Id_conv, CodConvenio, RazaoSocial) -->
+form_convenio(Convenio_id, CodConvenio, RazaoSocial) -->
     html(form([ id('convenio-form'),
                 onsubmit("redirecionaResposta( event, '/' )"),
-                action('/api/v1/convenios/~w' - Id_conv) ],
+                action('/api/v1/convenios/~w' - Convenio_id) ],
               [ \metodo_de_envio('PUT'),
-                \campo_nao_editavel(id_conv, 'Id_conv', text, Id_conv),
+                \campo_nao_editavel(convenio_id, 'Convenio_id', text, Convenio_id),
                 \campo(codConvenio, 'Codigo do Convenio: ', text, CodConvenio),
                 p(''),
                 \campo(razaoSocial, 'Razao Social: ', text, RazaoSocial),
@@ -110,6 +110,6 @@ retornar -->
     html(div(class(row),
         a([class(['btn', 'btn-primary']),
         href('/')],
-        'Retornar ao menu de cadastro.')
+        'Retornar ao menu inicial.')
         )
     ).
