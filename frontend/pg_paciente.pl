@@ -15,7 +15,7 @@ paciente(_Pedido) :-
         [div(class(container),
             [
                 \html_requires(js('rest.js')),
-                \html_requires(js('pacientes.js')),
+                \html_requires(js('comum.js')),
                 h2('Cadastro de Novo Paciente'),
                 \form_paciente,
                 p(''),
@@ -45,28 +45,28 @@ form_paciente -->
 
 
 editar_paciente(AtomId, _Pedido):-
-    atom_number(AtomId, Id_pac),
-    ( paciente:paciente(Id_pac, LoginP, CodConvenio)
+    atom_number(AtomId, Paciente_id),
+    ( paciente:paciente(Paciente_id, LoginP, CodConvenio)
     ->
     reply_html_page(
         boot5rest,
         [ title('Cadastro de Novo Paciente')],
         [ div(class(container),
               [ \html_requires(js('rest.js')),
-                \html_requires(js('pacientes.js')),
+                \html_requires(js('comum.js')),
                 h1('Pacientes'),
-                \form_paciente(Id_pac, LoginP, CodConvenio)
+                \form_paciente(Paciente_id, LoginP, CodConvenio)
               ]) ])
-    ; throw(http_reply(not_found(Id_pac)))
+    ; throw(http_reply(not_found(Paciente_id)))
     ).
 
 
-form_paciente(Id_pac, LoginP, CodConvenio) -->
+form_paciente(Paciente_id, LoginP, CodConvenio) -->
     html(form([ id('paciente-form'),
                 onsubmit("redirecionaResposta( event, '/' )"),
-                action('/api/v1/pacientes/~w' - Id_pac) ],
+                action('/api/v1/pacientes/~w' - Paciente_id) ],
               [ \metodo_de_envio('PUT'),
-                \campo_nao_editavel(id_pac, 'Id_pac', text, Id_pac),
+                \campo_nao_editavel(paciente_id, 'Paciente_id', text, Paciente_id),
                 \campo(loginP, 'Login do Paciente: ', text, LoginP),
                 p(''),
                 \campo(codConvenio, 'Codigo do Convenio: ', text, CodConvenio),

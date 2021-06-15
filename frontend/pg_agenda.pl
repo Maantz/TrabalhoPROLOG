@@ -12,10 +12,10 @@
 agenda(_Pedido) :-
     reply_html_page(
         boot5rest,
-        [ title('Cadastro - Agendamento')],
+        [ title('Cadastro - Agenda')],
         [div(class(container),
             [
-                \html_requires(js('bookmark.js')),
+                \html_requires(js('comum.js')),
                 \html_requires(js('rest.js')),
                 h2('Cadastro de Horarios'),
                 \form_agenda,
@@ -38,9 +38,46 @@ form_agenda -->
             \campo(date, 'Data: ', text),
             \campo(datetime, 'Horario: ', text),
             \campo(reason, 'Motivo: ', text),
-            \campo(notes, 'Anotacao: ', text),
-            \campo(phone, 'Telefone: ', text),
-            \enviar_ou_cancelar('/')
+            \campo(notes, 'Anotacoes: ', text),
+            \campo(Phone, 'Telefone: ', text),
+            \enviar
         ]
     )
 ).
+
+
+editar_schedule(AtomId, _Pedido):-
+    atom_number(AtomId, Schedule_id),
+    ( schedule:schedule(Schedule_id, Date, Datetime, Reason, Notes, Phone)
+    ->
+    reply_html_page(
+        boot5rest,
+        [ title('Cadastro de Anamnese')],
+        [ div(class(container),
+              [ \html_requires(js('rest.js')),
+                \html_requires(js('comum.js')),
+                h1('Anamneses'),
+                \form_agenda(Schedule_id, Date, Datetime, Reason, Notes, Phone)
+              ]) ])
+    ; throw(http_reply(not_found(Schedule_id)))
+    ).
+
+
+form_agenda(Schedule_id, Date, Datetime, Reason, Notes, Phone) -->
+    html(form([ id('agenda-form'),
+                onsubmit("redirecionaResposta( event, '/' )"),
+                action('/api/v1/schedules/~w' - Schedule_id) ],
+              [ \metodo_de_envio('PUT'),
+                \campo_nao_editavel(schedule_id, 'Schedule_id', text, Schedule_id),
+                \campo(Date, 'Data: ', text, Date),
+                p(''),
+                \campo(Datetime, 'Horarios: ', text, Datetime),
+                p(''),
+                \campo(Reason, 'Motivo: ', text, Reason),
+                p(''),
+                \campo(Notes, 'Anotacoes: ', text, Notes),
+                p(''),
+                \campo(Phone, 'Telefone: ', text, Phone),
+                p(''),
+                \enviar
+              ])).
