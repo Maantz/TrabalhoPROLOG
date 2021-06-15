@@ -13,88 +13,59 @@
 
 
 usuarios(get, '', _Pedido):- !,
-    envia_tabela.
+    envia_tabela_usuario.
 
-/*
-   GET api/v1/usuarios/Id
-   Retorna o usuário com Id 1 ou erro 404 caso o usuário não
-   seja encontrado.
-*/
+
 usuarios(get, AtomId, _Pedido):-
-    atom_number(AtomId, Id),
+    atom_number(AtomId, Usuario_id),
     !,
-    envia_tupla(Id).
+    envia_tupla_usuario(Usuario_id).
 
-/*
-   POST api/v1/usuarios
-   Adiciona um novo usuário. Os dados deverão ser passados no corpo da
-   requisição no formato JSON. Por default, o usuário possui a funçao
-   estudante
-
-   Um erro 400 (BAD REQUEST) deve ser retornado caso algo dê errado
-*/
 
 usuarios(post, _, Pedido):-
     http_read_json_dict(Pedido, Dados),
     !,
-    insere_tupla(Dados).
+    insere_tupla_usuario(Dados).
 
-/*
-  PUT api/v1/usuarios/Id
-  Atualiza o usuário com o Id informado.
-  Os dados são passados no corpo do pedido no formato JSON.
-*/
+
 usuarios(put, AtomId, Pedido):-
-    atom_number(AtomId, Id),
-    %ttp_read_json_dict(Pedido, Dados),
+    atom_number(AtomId, Usuario_id),
+    http_read_json_dict(Pedido, Dados),
     !,
-    atualiza_tupla(Dados, Id).
-/*
-   DELETE api/v1/usuarios/Id
-   Apaga o bookmark com o Id informado
-*/
+    atualiza_tupla_usuario(Dados, Usuario_id).
+
+
 usuarios(delete, AtomId, _Pedido):-
-    atom_number(AtomId, Usuario_ID),
+    atom_number(AtomId, Usuario_id),
     !,
-    usuario:remove(Usuario_ID),
+    usuario:remove(Usuario_id),
     throw(http_reply(no_content)).
 
-/* Se algo ocorrer de errado, a resposta de método não
-   permitido será retornada.
- */
 
-usuarios(Metodo, Id, _Pedido) :-
-    throw(http_reply(method_not_allowed(Metodo, Id))).
+usuarios(Metodo, Usuario_id, _Pedido) :-
+    throw(http_reply(method_not_allowed(Metodo, Usuario_id))).
 
 
-insere_tupla( _{ nome:Nome, email:Email, senha:Senha }):-
-    ( usuario:insere(Usuario_ID, Nome, Email, Senha)
-      %atom_string(Função, StrFun),
-      %função:função(Função_ID, Função, _, _),
-      %usuário_função:insere(_, Usuário_ID, Função_ID)
-    )
-    -> envia_tupla(Usuario_ID)
+insere_tupla_usuario( _{ nome:Nome, email:Email, senha:Senha }):-
+    usuario:insere(Usuario_id, Nome, Email, Senha
+    -> envia_tupla_usuario(Usuario_id)
     ;  throw(http_reply(bad_request('Email ja cadastrado'))).
 
-atualiza_tupla( _{ nome:Nome, email:Email, senha:Senha}, Usuario_ID):-
-    ( %atom_string(Função, StrFun),
-      %função:função(Função_ID, Função, _, _),
-      %usuário_função:usuário_função(UF_ID, Usuário_ID, _, _, _),
-      usuario:atualiza(Usuario_ID, Nome, Email, Senha)
-      %usuario:atualiza_senha(Usuário_ID, Senha),
-      %usuario_função:atualiza(UF_ID, Usuário_ID, Função_ID)
-    )
-    -> envia_tupla(Usuario_ID)
-    ;  throw(http_reply(not_found(Usuario_ID))).
 
-envia_tupla(Id):-
-    usuario:usuario(Id, Nome, Email, Senha)
-    -> reply_json_dict( _{ id:Id, nome:Nome, email:Email, senha:Senha} )
-    ;  throw(http_reply(not_found(Id))).
+atualiza_tupla_usuario( _{ nome:Nome, email:Email, senha:Senha}, Usuario_id):-
+    usuario:atualiza(Usuario_id, Nome, Email, Senha)
+    -> envia_tupla_usuario(Usuario_id)
+    ;  throw(http_reply(not_found(Usuario_id))).
 
 
-envia_tabela :-
-    findall( _{ id:Id, nome:Nome, email:Email},
-             usuario:usuario(Id, Nome, Email, _Senha),
+envia_tupla_usuario(Usuario_id):-
+    usuario:usuario(Usuario_id, Nome, Email, Senha)
+    -> reply_json_dict( _{ usuario:id:Usuario_id, nome:Nome, email:Email, senha:Senha} )
+    ;  throw(http_reply(not_found(Usuario_id))).
+
+
+envia_tabela_usuario :-
+    findall( _{ usuario:id:Usuario_id, nome:Nome, email:Email},
+             usuario:usuario(Usuario_id, Nome, Email, _Senha),
             Tuplas),
     reply_json_dict(Tuplas).

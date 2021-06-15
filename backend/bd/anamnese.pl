@@ -21,7 +21,7 @@
              doenca:string,
              alergia:string,
              fumante:string,
-             gestante:string). 
+             gestante:string).
 
 
 :-initialization(at_halt(db_sync(gc(always)))).
@@ -31,17 +31,17 @@ carrega_tab(ArqTabela):-
     db_attach(ArqTabela, []).
 
 
-insere(IdAnamnese, Medicamento, TipoSangue, Doenca, Alergia, Fumante, Gestante):-
-    chave:pk(anamnese, IdAnamnese),
+insere(Anamnese_id, Medicamento, TipoSangue, Doenca, Alergia, Fumante, Gestante):-
+    chave:pk(anamnese, Anamnese_id),
     with_mutex(anamnese,
-         assert_anamnese(IdAnamnese, Medicamento, TipoSangue, Doenca, Alergia, Fumante, Gestante)).
+         assert_anamnese(Anamnese_id, Medicamento, TipoSangue, Doenca, Alergia, Fumante, Gestante)).
 
-remove(IdAnamnese):-
+remove(Anamnese_id):-
     with_mutex(anamnese,
-        retractall_anamnese(IdAnamnese, _Medicamento, _TipoSangue, _Doenca, _Alergia, _Fumante, _Gestante)).
+        retractall_anamnese(Anamnese_id, _Medicamento, _TipoSangue, _Doenca, _Alergia, _Fumante, _Gestante)).
 
 
-atualiza(IdAnamnese, Medicamento, TipoSangue, Doenca, Alergia, Fumante, Gestante):-
+atualiza(Anamnese_id, Medicamento, TipoSangue, Doenca, Alergia, Fumante, Gestante):-
     with_mutex(anamnese,
-        retract_anamnese(IdAnamnese, _MediAnti, _TipoSAnti, _DoencaAnti, _AlergiaAnti, _FumanteAnti, _GestanteAnti),
-        assert_anamnese(IdAnamnese, Medicamento, TipoSangue, Doenca, Alergia, Fumante, Gestante)).
+        retract_anamnese(Anamnese_id, _MediAnt, _TipoSAnt, _DoencaAnt, _AlergiaAnt, _FumanteAnt, _GestanteAnt),
+        assert_anamnese(Anamnese_id, Medicamento, TipoSangue, Doenca, Alergia, Fumante, Gestante)).
