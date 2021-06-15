@@ -46,13 +46,13 @@ usuarios(Metodo, Usuario_id, _Pedido) :-
     throw(http_reply(method_not_allowed(Metodo, Usuario_id))).
 
 
-insere_tupla_usuario( _{ nome:Nome, email:Email, senha:Senha }):-
-    usuario:insere(Usuario_id, Nome, Email, Senha
+insere_tupla_usuario( _{nome:Nome, email:Email, senha:Senha} ):-
+    usuario:insere(Usuario_id, Nome, Email, Senha)
     -> envia_tupla_usuario(Usuario_id)
     ;  throw(http_reply(bad_request('Email ja cadastrado'))).
 
 
-atualiza_tupla_usuario( _{ nome:Nome, email:Email, senha:Senha}, Usuario_id):-
+atualiza_tupla_usuario( _{nome:Nome, email:Email, senha:Senha}, Usuario_id ):-
     usuario:atualiza(Usuario_id, Nome, Email, Senha)
     -> envia_tupla_usuario(Usuario_id)
     ;  throw(http_reply(not_found(Usuario_id))).

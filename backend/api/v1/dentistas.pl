@@ -13,7 +13,7 @@
 
 
 dentistas(get, '', _Pedido):- !,
-    envia_tabela_dentista
+    envia_tabela_dentista.
 
 
 dentistas(get, AtomId, _Pedido):-
@@ -46,13 +46,13 @@ dentistas(Metodo, Dentista_id, _Pedido) :-
     throw(http_reply(method_not_allowed(Metodo, Dentista_id))).
 
 
-insere_tupla_dentista( _{ cro:CRO }):-
+insere_tupla_dentista( _{cro:CRO} ):-
     dentista:insere(Dentista_id, CRO)
     -> envia_tupla_dentista(Dentista_id)
     ;  throw(http_reply(bad_request('Dentista ja cadastrado'))).
 
 
-atualiza_tupla_dentista( _{ cro:CRO }):-
+atualiza_tupla_dentista( _{cro:CRO}, Dentista_id ):-
        dentista:atualiza(Dentista_id, CRO)
     -> envia_tupla_dentista(Dentista_id)
     ;  throw(http_reply(not_found(Dentista_id))).
