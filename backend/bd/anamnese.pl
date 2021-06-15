@@ -21,7 +21,7 @@
              doenca:string,
              alergia:string,
              fumante:string,
-             gestante:string). 
+             gestante:string).
 
 
 :- initialization( 
@@ -44,5 +44,5 @@ remove(Anamnese_id):-
 
 atualiza(Anamnese_id, Medicamento, TipoSangue, Doenca, Alergia, Fumante, Gestante):-
     with_mutex(anamnese,
-        retract_anamnese(Anamnese_id, _MediAnti, _TipoSAnti, _DoencaAnti, _AlergiaAnti, _FumanteAnti, _GestanteAnti),
+        retract_anamnese(Anamnese_id, _MediAnt, _TipoSAnt, _DoencaAnt, _AlergiaAnt, _FumanteAnt, _GestanteAnt),
         assert_anamnese(Anamnese_id, Medicamento, TipoSangue, Doenca, Alergia, Fumante, Gestante)).

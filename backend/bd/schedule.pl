@@ -42,5 +42,5 @@ remove(Schedule_id):-
 
 atualiza(Schedule_id,Date,DateTime,Reason,Notes,Phone):-
     with_mutex(schedule,
-                ( retract_schedule(Schedule_id,_DateAnti,_DateTimeAnti,_ReasonAnti,_NotesAnti,_PhoneAnti),
+                ( retract_schedule(Schedule_id,_DateAnt,_DateTimeAnt,_ReasonAnt,_NotesAnt,_PhoneAnt),
                   assert_schedule(Schedule_id,Date,DateTime,Reason,Notes,Phone))).

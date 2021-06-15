@@ -46,13 +46,13 @@ pacientes(Metodo, Paciente_id, _Pedido) :-
     throw(http_reply(method_not_allowed(Metodo, Paciente_id))).
 
 
-insere_tupla_paciente(_{loginP:LoginP, codConvenio:CodConvenio}):-
+insere_tupla_paciente( _{loginP:LoginP, codConvenio:CodConvenio} ):-
     paciente:insere(Paciente_id, LoginP, CodConvenio)
     -> envia_tupla_paciente(Paciente_id)
     ;  throw(http_reply(bad_request('URL ausente'))).
 
 
-atualiza_tupla_paciente(_{loginP:LoginP, codConvenio:CodConvenio}, Paciente_id):-
+atualiza_tupla_paciente( _{loginP:LoginP, codConvenio:CodConvenio}, Paciente_id ):-
        paciente:atualiza(Paciente_id, LoginP, CodConvenio)
     -> envia_tupla_paciente(Paciente_id)
     ;  throw(http_reply(not_found(Paciente_id))).
