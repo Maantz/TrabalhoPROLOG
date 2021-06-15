@@ -1,2 +1,2 @@
-created(1623777134.706136).
+created(1623779215.296955).
 assert(chave(usuario,6)).
