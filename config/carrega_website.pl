@@ -12,6 +12,8 @@
 :-load_files([  gabarito(bootstrap5),
                 gabarito(boot5rest),
                 frontend(pg_entrada),
+                frontend(pg_usuario),
+                frontend(pg_dentista),
                 frontend(pg_agenda),
                 frontend(pg_anamnese),
                 frontend(pg_convenio),

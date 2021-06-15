@@ -24,8 +24,9 @@
              gestante:string).
 
 
-:-initialization(at_halt(db_sync(gc(always)))).
-
+:- initialization( 
+    at_halt(db_sync(gc(always)))    
+    ).
 
 carrega_tab(ArqTabela):-
     db_attach(ArqTabela, []).
