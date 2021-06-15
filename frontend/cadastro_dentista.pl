@@ -3,7 +3,7 @@
 :-ensure_loaded(gabarito(boot5rest)).
 
 
-cadastroDentista(Pedido):-
+dentista(Pedido):-
     reply_html_page(
         boot5rest,
         [title('Clinica Odontologica')],
@@ -12,6 +12,7 @@ cadastroDentista(Pedido):-
                 h1(class("my-5 text-center"),
                     'Cadastro de Dentista'),
             \cadastro_formulario_dentista,
+            \%futuro botão para cadastro,
             br(br),
             \retorna_home])]
     ).

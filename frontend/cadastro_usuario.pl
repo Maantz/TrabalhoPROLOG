@@ -6,7 +6,7 @@
 :-use_module(library(http/html_head)).
 :-ensure_loaded(gabarito(boot5rest)).
 
-cadastro(Pedido):-
+usuario(Pedido):-
     (memberchk(referer(RotaDeRetorno), Pedido) ; RotaDeRetorno = '/' ),
     reply_html_page(
         boot5rest,
@@ -15,6 +15,7 @@ cadastro(Pedido):-
               [ \html_requires(js('comum.js')),
                 h1('Cadastro de Usuários'),
                 \form_cadastro(RotaDeRetorno),
+                br(br),
                 \retorna_home
               ]) ]).
 
