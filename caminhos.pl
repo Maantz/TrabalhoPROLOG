@@ -1,7 +1,7 @@
 :- multifile user:file_search_path/2.
 
 
-user:file_search_path(dir_base, 'C:/aulas-si-remotas/prolog/github').
+user:file_search_path(dir_base, 'C:/').
 
 
 user:file_search_path(trabalho, dir_base(trabalho)).
