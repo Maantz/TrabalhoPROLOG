@@ -1,10 +1,10 @@
 :- multifile user:file_search_path/2.
 
 
-user:file_search_path(dir_base, '..//').
+user:file_search_path(dir_base, 'C:/aulas-si-remotas/prolog/github').
 
 
-user:file_search_path(trabalho, dir_base(trabalhoPROLOG)).
+user:file_search_path(trabalho, dir_base(trabalho)).
 
 
 user:file_search_path(config, trabalho(config)).
