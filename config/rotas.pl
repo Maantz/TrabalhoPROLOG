@@ -1,21 +1,17 @@
 :-use_module(library(http/http_dispatch)).
 :-use_module(library(http/http_path)).
 
+
 :- ensure_loaded(caminhos).
 
-%ainda nao vi a utilidade desse predicado(by.:gustavo)
+
 apelido_rota(Apelido, RotaCompleta):-
    http_absolute_location(Apelido, Rota, []),
    atom_concat(Rota, '/', RotaCompleta).
 
+
 :-multifile http:location/3.
 :-dynamic   http:location/3.
-
-%http:location(Apelido, Rota, Opções)
-%      Apelido é como será chamada uma Rota do servidor.
-%      Os apelidos css, icons e js já estão definidos na
-%      biblioteca http/http_server_files, os demais precisam
-%      ser definidos.
 
 
 http:location(img, root(img), []).
@@ -34,7 +30,7 @@ http:location(api1, api(v1), []).
                  []).
 
 
-%Rotas do Frontend(editar aqui conforme formos avançando no frontend)
+
 :- http_handler(root(.), entrada,   []).
 :- http_handler(root(entrada_dentista), entrada_dentista, []).
 :- http_handler(root(entrada_usuario), entrada_usuario, []).
@@ -45,46 +41,44 @@ http:location(api1, api(v1), []).
 
 :- http_handler(root(dentista), dentista, []).
 :- http_handler(root(usuario), usuario, []).
-:- http_handler(root(agenda), agenda, []).
+:- http_handler(root(schedule), agenda, []).
 :- http_handler(root(anamnese), anamnese, []).
 :- http_handler(root(convenio), convenio, []).
 :- http_handler(root(paciente), paciente, []).
 
 :- http_handler(root(dentista/editar/Id), editar_dentista(Id), []).
 :- http_handler(root(usuario/editar/Id), editar_usuario(Id), []).
-:- http_handler(root(agenda/editar/Id), editar_agenda(Id), []).
+:- http_handler(root(schedule/editar/Id), editar_agenda(Id), []).
 :- http_handler(root(anamnese/editar/Id), editar_anamnese(Id), []).
 :- http_handler(root(convenio/editar/Id), editar_convenio(Id), []).
 :- http_handler(root(paciente/editar/Id), editar_paciente(Id), []).
 
 
-
-%Rotas da Api
-:- http_handler(api1(usuarios/Id), usuarios:usuarios(Metodo, Id),
+:- http_handler(api1(usuarios/Id), usuarios(Metodo, Id),
                  [ method(Metodo),
                    methods([ get, post, put, delete ]) ]).
 
 
-:- http_handler(api1(dentistas/Id), dentistas:dentistas(Metodo, Id),
+:- http_handler(api1(dentistas/Id), dentistas(Metodo, Id),
                  [ method(Metodo),
                    methods([ get, post, put, delete ]) ]).
 
 
-:- http_handler(api1(anamneses/Id),anamneses:anamneses(Metodo, Id),
+:- http_handler(api1(anamneses/Id), anamneses(Metodo, Id),
                  [ method(Metodo),
                    methods([ get, post, put, delete ]) ]).
 
 
-:- http_handler(api1(schedules/Id),schedules:schedules(Metodo, Id),
+:- http_handler(api1(schedules/Id), schedules(Metodo, Id),
                  [ method(Metodo),
                    methods([ get, post, put, delete ]) ]).
 
 
-:- http_handler(api1(convenios/Id), convenios:convenios(Metodo, Id),
+:- http_handler(api1(convenios/Id), convenios(Metodo, Id),
                  [ method(Metodo),
                    methods([ get, post, put, delete ]) ]).
 
 
-:- http_handler(api1(pacientes/Id), pacientes:pacientes(Metodo, Id),
+:- http_handler(api1(pacientes/Id), pacientes(Metodo, Id),
                  [ method(Metodo),
                    methods([ get, post, put, delete ]) ]).

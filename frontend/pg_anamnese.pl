@@ -15,9 +15,14 @@ anamnese(_Pedido):-
         [ title('Receitas - Paciente')],
         [div(class(container),
             [ 
-                \html_requires(js('comum.js')),
                 \html_requires(js('rest.js')),
-                h2('Cadastro de Receitas'),
+                \html_requires(js('custom.js')),
+                p(''),
+                p(''),
+                p(''),
+                p(''),
+                h1(class("my-5 text-center"),
+                    'Cadastro de Nova Anamnese'),
                 \form_anamnese,
                 p(''),
                 \retornar
@@ -56,7 +61,7 @@ editar_anamnese(AtomId, _Pedido):-
         [ title('Cadastro de Anamnese')],
         [ div(class(container),
               [ \html_requires(js('rest.js')),
-                \html_requires(js('comum.js')),
+                \html_requires(js('custom.js')),
                 h1('Anamneses'),
                 \form_anamnese(Anamnese_id, Medicamento, TipoSangue, Doenca, Alergia, Fumante, Gestante)
               ]) ])

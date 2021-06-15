@@ -1,10 +1,3 @@
-:- module(
-       usuarios,
-       [
-           usuarios/3
-       ]
-   ).
-
 :- use_module(library(http/http_parameters)).
 :- use_module(library(http/http_header)).
 :- use_module(library(http/http_json)).
@@ -29,11 +22,7 @@ usuarios(post, _, Pedido):-
 
 
 usuarios(put, AtomId, Pedido):-
-<<<<<<< HEAD
-    atom_number(AtomId, Id),
-=======
     atom_number(AtomId, Usuario_id),
->>>>>>> 32536f3a5dbaf6ec80007cd9cf5ae75d35a7217d
     http_read_json_dict(Pedido, Dados),
     !,
     atualiza_tupla_usuario(Dados, Usuario_id).

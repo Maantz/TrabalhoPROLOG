@@ -15,8 +15,13 @@ paciente(_Pedido) :-
         [div(class(container),
             [
                 \html_requires(js('rest.js')),
-                \html_requires(js('comum.js')),
-                h2('Cadastro de Novo Paciente'),
+                \html_requires(js('custom.js')),
+                p(''),
+                p(''),
+                p(''),
+                p(''),
+                h1(class("my-5 text-center"),
+                    'Cadastro de Novo Paciente'),
                 \form_paciente,
                 p(''),
                 \retornar
@@ -53,7 +58,7 @@ editar_paciente(AtomId, _Pedido):-
         [ title('Cadastro de Novo Paciente')],
         [ div(class(container),
               [ \html_requires(js('rest.js')),
-                \html_requires(js('comum.js')),
+                \html_requires(js('custom.js')),
                 h1('Pacientes'),
                 \form_paciente(Paciente_id, LoginP, CodConvenio)
               ]) ])
