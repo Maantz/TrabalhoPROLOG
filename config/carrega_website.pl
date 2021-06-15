@@ -5,7 +5,7 @@
                 if(not_loaded) ]).
 
 
-:-initialization(servidor(8000)).
+:-initialization(servidor(3000)).
 
 
 
@@ -17,8 +17,7 @@
                 frontend(pg_convenio),
                 frontend(pg_paciente),
                 frontend(menu_topo),
-                frontend(icones),
-
+                frontend(icones)
               ],
               [ silent(true),
                 if(not_loaded) ]).
