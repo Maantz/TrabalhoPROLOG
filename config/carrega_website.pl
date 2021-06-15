@@ -9,16 +9,23 @@
 
 
 
-:-load_files([  gabarito(bootstrap5),         % <----------- ver essa questão(frontent)
+:-load_files([  gabarito(bootstrap5),
                 gabarito(boot5rest),
                 frontend(pg_entrada),
                 frontend(pg_agenda),
                 frontend(pg_anamnese),
                 frontend(pg_convenio),
                 frontend(pg_paciente),
+                frontend(pg_dentista),
+                frontend(pg_usuario),
+                frontend(pg_entrada_agenda),
+                frontend(pg_entrada_anamnese),
+                frontend(pg_entrada_convenio),
+                frontend(pg_entrada_paciente),
+                frontend(pg_entrada_dentista),
+                frontend(pg_entrada_usuario),
                 frontend(menu_topo),
-                frontend(icones),
-
+                frontend(icones)
               ],
               [ silent(true),
                 if(not_loaded) ]).

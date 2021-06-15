@@ -35,14 +35,31 @@ http:location(api1, api(v1), []).
 
 
 %Rotas do Frontend(editar aqui conforme formos avançando no frontend)
-:-http_handler(root(.), entrada,   []).
-:- http_handler(root(home), home, []).
-:- http_handler(root(pg_dentista), dentista, []).
-:-http_handler(root(pg_usuario), usuario, []).
+:- http_handler(root(.), entrada,   []).
+:- http_handler(root(entrada_dentista), entrada_dentista, []).
+:- http_handler(root(entrada_usuario), entrada_usuario, []).
+:- http_handler(root(entrada_agenda), entrada_agenda, []).
+:- http_handler(root(entrada_anamnese), entrada_anamnese, []).
+:- http_handler(root(entrada_convenio), entrada_convenio, []).
+:- http_handler(root(entrada_paciente), entrada_paciente, []).
 
-:-http_handler(root(tab_usuarios), tab_usuarios, []). %tabela de usuarios
+:- http_handler(root(dentista), dentista, []).
+:- http_handler(root(usuario), usuario, []).
+:- http_handler(root(agenda), agenda, []).
+:- http_handler(root(anamnese), anamnese, []).
+:- http_handler(root(convenio), convenio, []).
+:- http_handler(root(paciente), paciente, []).
+
+:- http_handler(root(dentista/editar/Id), editar_dentista(Id), []).
+:- http_handler(root(usuario/editar/Id), editar_usuario(Id), []).
+:- http_handler(root(agenda/editar/Id), editar_agenda(Id), []).
+:- http_handler(root(anamnese/editar/Id), editar_anamnese(Id), []).
+:- http_handler(root(convenio/editar/Id), editar_convenio(Id), []).
+:- http_handler(root(paciente/editar/Id), editar_paciente(Id), []).
 
 
+
+%Rotas da Api
 :- http_handler(api1(usuarios/Id), usuarios:usuarios(Metodo, Id),
                  [ method(Metodo),
                    methods([ get, post, put, delete ]) ]).
