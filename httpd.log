@@ -237,3 +237,4 @@ server(started, 1623778561).
 completed(1, 0.0, 2416, 200, ok).
 /*Tue Jun 15 14:36:04 2021*/ request(2, 1623778564.297, [peer(ip(127,0,0,1)),method(get),request_uri('/dentista'),path('/dentista'),http_version(1-1),host(localhost),port(8000),connection('keep-alive'),sec_ch_ua('" Not;A Brand";v="99", "Google Chrome";v="91", "Chromium";v="91"'),sec_ch_ua_mobile('?0'),upgrade_insecure_requests('1'),user_agent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.106 Safari/537.36'),sec_fetch_site('same-origin'),sec_fetch_mode(navigate),sec_fetch_user('?1'),sec_fetch_dest(document),referer('http://localhost:8000/')]).
 completed(2, 0.0, 375, 404, error(404,'/dentista')).
+server(stopped, 1623779262).
