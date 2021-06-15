@@ -35,10 +35,10 @@ anamneses(put, AtomId, Pedido):-
     atualiza_tupla_anamnese(Dados, Anamnese_id).
 
 
-anameses(delete, AtomId, _Pedido):-
+anamneses(delete, AtomId, _Pedido):-
     atom_number(AtomId, Anamnese_id),
     !,
-    anamnese:remove_anamnese(Anamnese_id),
+    anamnese:remove(Anamnese_id),
     throw(http_reply(no_content)).
 
 
