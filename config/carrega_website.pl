@@ -10,11 +10,10 @@
 
 
 :-load_files([  gabarito(bootstrap5),         % <----------- ver essa questão(frontent)
-                gabarito(boot5rest),
-                frontend(pg_entrada),
-                frontend(menu_topo),
-                frontend(icones)
-
+                gabarito(boot5rest)%,
+                %frontend(pg_entrada),
+                %frontend(menu_topo),
+                %frontend(icones)
               ],
               [ silent(true),
                 if(not_loaded) ]).
@@ -25,7 +24,7 @@
               api1(usuarios),
               api1(convenios),
               api1(pacientes),
-              api1(anameneses),
+              api1(anamneses),
               api1(schedules)
               ],
               [ silent(true),

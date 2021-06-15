@@ -46,7 +46,7 @@ usuarios(post, _, Pedido):-
 */
 usuarios(put, AtomId, Pedido):-
     atom_number(AtomId, Id),
-    %ttp_read_json_dict(Pedido, Dados),
+    http_read_json_dict(Pedido, Dados),
     !,
     atualiza_tupla(Dados, Id).
 /*

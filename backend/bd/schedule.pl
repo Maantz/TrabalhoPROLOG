@@ -31,16 +31,16 @@ carrega_tab(ArqTabela):-
     db_attach(ArqTabela, []).
 
 
-insere(IdSchedule,Date,DateTime,Reason,Notes,Phone):-
-    chave:pk(schedule,IdSchedule),
+insere(Schedule_id,Date,DateTime,Reason,Notes,Phone):-
+    chave:pk(schedule,Schedule_id),
     with_mutex(schedule,
-                 assert_schedule(IdSchedule,Date,DateTime,Reason,Notes,Phone)).
+                 assert_schedule(Schedule_id,Date,DateTime,Reason,Notes,Phone)).
 
-remove(IdSchedule):-
+remove(Schedule_id):-
     with_mutex(schedule,
-                retractall_schedule(IdSchedule,_Date,_DateTime,_Reason,_Notes,_Phone)).
+                retractall_schedule(Schedule_id,_Date,_DateTime,_Reason,_Notes,_Phone)).
 
-atualiza(IdSchedule,Date,DateTime,Reason,Notes,Phone):-
+atualiza(Schedule_id,Date,DateTime,Reason,Notes,Phone):-
     with_mutex(schedule,
-                ( retract_schedule(IdSchedule,_DateAnti,_DateTimeAnti,_ReasonAnti,_NotesAnti,_PhoneAnti),
-                  assert_schedule(IdSchedule,Date,DateTime,Reason,Notes,Phone))).
+                ( retract_schedule(Schedule_id,_DateAnti,_DateTimeAnti,_ReasonAnti,_NotesAnti,_PhoneAnti),
+                  assert_schedule(Schedule_id,Date,DateTime,Reason,Notes,Phone))).

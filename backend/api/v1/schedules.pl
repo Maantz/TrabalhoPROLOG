@@ -38,7 +38,7 @@ schedules(put, AtomId, Pedido):-
 schedules(delete, AtomId, _Pedido):-
     atom_number(AtomId, Schedule_id),
     !,
-    schedule:remove_schedule(Schedule_id),
+    schedule:remove(Schedule_id),
     throw(http_reply(no_content)).
 
 

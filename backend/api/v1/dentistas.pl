@@ -13,7 +13,7 @@
 
 
 dentistas(get, '', _Pedido):- !,
-    envia_tabela_dentista
+    envia_tabela_dentista.
 
 
 dentistas(get, AtomId, _Pedido):-

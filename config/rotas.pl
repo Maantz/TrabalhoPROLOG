@@ -1,7 +1,7 @@
 :-use_module(library(http/http_dispatch)).
 :-use_module(library(http/http_path)).
 
-:-load_files(projeto(caminhos)).
+:-load_files(trabalho(caminhos)).
 
 %ainda nao vi a utilidade desse predicado(by.:gustavo)
 apelido_rota(Apelido, RotaCompleta):-
