@@ -1,9 +1,8 @@
-﻿%% gustavo coloca aqui a pagina de entrada
-
-:-use_module(library(http/html_write)).
+﻿:-use_module(library(http/html_write)).
 :-use_module(library(http/html_head)).
-:-ensure_loaded(gabarito(boot5rest)).
+
 :-load_files(gabarito(boot5rest)).
+
 entrada(_):-
     reply_html_page(
         boot5rest,

@@ -5,7 +5,7 @@
                 if(not_loaded) ]).
 
 
-:-initialization(servidor(9000)).
+:-initialization(servidor(8000)).
 
 
 
@@ -17,7 +17,9 @@
                 frontend(pg_convenio),
                 frontend(pg_paciente),
                 frontend(menu_topo),
-                frontend(icones)
+                frontend(icones),
+                frontend(cadastro_usuario),
+                frontend(cadastro_dentista)
 
               ],
               [ silent(true),

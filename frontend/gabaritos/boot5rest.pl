@@ -1,8 +1,8 @@
-:- use_module(library(http/html_write)).
-:- use_module(library(http/html_head)).
+:-use_module(library(http/html_write)).
+:-use_module(library(http/html_head)).
 
 
-:- multifile
+:-multifile
     user:body//2.
 
 
