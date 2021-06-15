@@ -1,8 +1,14 @@
+:- module(
+    pacientes,
+    [
+        pacientes/3
+    ]
+).
+
+
 :- use_module(library(http/http_parameters)).
 :- use_module(library(http/http_header)).
 :- use_module(library(http/http_json)).
-
-
 :- use_module(bd(paciente), []).
 
 
@@ -11,9 +17,9 @@ pacientes(get, '', _Pedido):- !,
 
 
 pacientes(get, AtomId, _Pedido):-
-    atom_number(AtomId, Id_pac),
+    atom_number(AtomId, Paciente_id),
     !,
-    envia_tupla_paciente(Id_pac).
+    envia_tupla_paciente(Paciente_id).
 
 
 pacientes(post, _, Pedido):-
@@ -23,42 +29,43 @@ pacientes(post, _, Pedido):-
 
 
 pacientes(put, AtomId, Pedido):-
-    atom_number(AtomId, Id_pac),
+    atom_number(AtomId, Paciente_id),
     http_read_json_dict(Pedido, Dados),
     !,
-    atualiza_tupla_paciente(Dados, Id_pac).
+    atualiza_tupla_paciente(Dados, Paciente_id).
 
 
 pacientes(delete, AtomId, _Pedido):-
-    atom_number(AtomId, Id_pac),
+    atom_number(AtomId, Paciente_id),
     !,
-    paciente:remove(Id_pac).
+    paciente:remove(Paciente_id),
+    throw(http_reply(no_content)).
 
 
-pacientes(Metodo, Id_pac, _Pedido) :-
-    throw(http_reply(method_not_allowed(Metodo, Id_pac))).
+pacientes(Metodo, Paciente_id, _Pedido) :-
+    throw(http_reply(method_not_allowed(Metodo, Paciente_id))).
 
 
 insere_tupla_paciente(_{loginP:LoginP, codConvenio:CodConvenio}):-
-    paciente:insere(Id_pac, LoginP, CodConvenio)
-    -> envia_tupla_paciente(Id_pac)
+    paciente:insere(Paciente_id, LoginP, CodConvenio)
+    -> envia_tupla_paciente(Paciente_id)
     ;  throw(http_reply(bad_request('URL ausente'))).
 
 
-atualiza_tupla(_{loginP:LoginP, codConvenio:CodConvenio}, Id_pac):-
-       paciente:atualiza(Id_pac, LoginP, CodConvenio)
-    -> envia_tupla_paciente(Id_pac)
-    ;  throw(http_reply(not_found(Id_pac))).
+atualiza_tupla_paciente(_{loginP:LoginP, codConvenio:CodConvenio}, Paciente_id):-
+       paciente:atualiza(Paciente_id, LoginP, CodConvenio)
+    -> envia_tupla_paciente(Paciente_id)
+    ;  throw(http_reply(not_found(Paciente_id))).
 
 
-envia_tupla_paciente(Id_pac):-
-       paciente:paciente(Id_pac, LoginP, CodConvenio)
-    -> reply_json_dict( _{id_pac:Id_pac, loginP:LoginP, codConvenio:CodConvenio} )
-    ;  throw(http_reply(not_found(Id_pac))).
+envia_tupla_paciente(Paciente_id):-
+       paciente:paciente(Paciente_id, LoginP, CodConvenio)
+    -> reply_json_dict( _{paciente_id:Paciente_id, loginP:LoginP, codConvenio:CodConvenio} )
+    ;  throw(http_reply(not_found(Paciente_id))).
 
 
 envia_tabela_paciente :-
-    findall( _{id_pac:Id_pac, loginP:LoginP, codConvenio:CodConvenio},
-             paciente:paciente(Id_pac, LoginP, CodConvenio),
+    findall( _{paciente_id:Paciente_id, loginP:LoginP, codConvenio:CodConvenio},
+             paciente:paciente(Paciente_id, LoginP, CodConvenio),
              Tuplas ),
     reply_json_dict(Tuplas).

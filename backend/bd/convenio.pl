@@ -11,14 +11,12 @@
 
 
 :- use_module(library(persistency)).
-
-
-:- use_module(chave_conv, []).
+:- use_module(chave, []).
 
 
 :- persistent
     convenio(
-        id_conv:positive_integer, % chave primária
+        convenio_id:positive_integer, % chave primária
         codCovenio:string,
         razaoSocial:string
     ).  
@@ -33,26 +31,26 @@ carrega_tab(ArqTabela):-
     db_attach(ArqTabela, []).
 
 
-insere(Id_conv, CodCovenio, RazaoSocial):-
-    chave_conv:pk_conv(convenio, Id_conv),
+insere(Convenio_id, CodCovenio, RazaoSocial):-
+    chave:pk(convenio, Convenio_id),
     with_mutex(
         convenio,
-        assert_convenio(Id_conv, CodCovenio, RazaoSocial)
+        assert_convenio(Convenio_id, CodCovenio, RazaoSocial)
     ).
 
 
-remove(Id_conv):-
+remove(Convenio_id):-
     with_mutex(
         convenio,
-        retractall_convenio(Id_conv, _CodCovenio, _RazaoSocial)
+        retractall_convenio(Convenio_id, _CodCovenio, _RazaoSocial)
     ).
 
 
-atualiza(Id_conv, CodCovenio, RazaoSocial):-
+atualiza(Convenio_id, CodCovenio, RazaoSocial):-
     with_mutex(
         convenio,
         (
-            retract_convenio(Id_conv, _CodCovenioAnt,_RazaoSocialAnt),
-            assert_convenio(Id_conv, CodCovenio, RazaoSocial)
+            retract_convenio(Convenio_id, _CodCovenioAnt,_RazaoSocialAnt),
+            assert_convenio(Convenio_id, CodCovenio, RazaoSocial)
         )
     ).

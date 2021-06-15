@@ -1,34 +1,54 @@
-%Conforme no modelo Entidade e Relacionamento o banco "dentista"
-%possui apenas um campo que eh o "cro"
-%no servidor eu coloquei outros dois campos "Login" e "Senha"
-
 :-module(
         dentista,
-       [dentista/4, insere/4]
+        [
+           dentista/2,
+           insere/2,
+           remove/1,
+           atualiza/2
+        ]
     ).
 
+
 :-use_module(library(persistency)).
-:-use_module(library(crypto)).
 :-use_module(chave, []).
+
 
 :-persistent
     dentista(
         dentista_id:positive_integer,
-        cro: string,
-        login: string,
-        senha: atom
-        ).
+        cro:string
+    ).
+
 
 :-initialization(at_halt(db_sync(gc(always)))).
+
 
 carrega_tab(ArqTabela):-
     db_attach(ArqTabela, []).
 
-%Criando alguns predicados para testar se db foi criado corretamente:
-insere(Id, CRO, Login, Senha):-
-    chave:pk(usuario, Id),
-    with_mutex(dentista, (crypto_password_hash(Senha, Hash),
-                            assert_dentista(Id, CRO, Login, Hash))).
+
+insere(Dentista_id, CRO):-
+    chave:pk(usuario, Dentista_id),
+    with_mutex(dentista,
+                assert_dentista(Dentista_id, CRO)
+    ).
+
+
+remove(Dentista_id):-
+    with_mutex(
+        dentista,
+        retractall_dentista(Dentista_id, _CRO)
+    ).
+
+
+atualiza(Dentista_id, CRO):-
+    with_mutex(
+        dentista,
+        (
+            retract_dentista(Dentista_id, _CROAnt),
+            assert_dentista(Dentista_id, CRO)
+        )
+    ).
 
 
 

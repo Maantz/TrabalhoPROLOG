@@ -1,7 +1,7 @@
 :-use_module(library(http/thread_httpd)).
 :-use_module(library(http/http_dispatch)).
 
-% http_set_session_options
+% http_set_session_options (talves nao precisaremos dessa lib)
 :-use_module(library(http/http_session)).
 
 servidor(Porta):-
