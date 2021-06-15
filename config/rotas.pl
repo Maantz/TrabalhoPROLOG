@@ -18,19 +18,23 @@ apelido_rota(Apelido, RotaCompleta):-
 %      ser definidos.
 
 
+http:location(img, root(img), []).
 http:location(api, root(api), []).
 http:location(api1, api(v1), []).
 
-%Recursos estáticos
+
 :-http_handler( css(.),
                  serve_files_in_directory(dir_css), [prefix]).
-
 :-http_handler( js(.),
                  serve_files_in_directory(dir_js),  [prefix]).
+:- http_handler( img(.),
+                 serve_files_in_directory(dir_img), [prefix]).
+:- http_handler( '/favicon.ico',
+                 http_reply_file(dir_img('favicon.ico'), []),
+                 []).
 
-%===========================================================
+
 %Rotas do Frontend(editar aqui conforme formos avançando no frontend)
-
 :-http_handler(root(.), entrada,   []).
 %:- http_handler( root(.), pg_entrada:entrada, []).
 :- http_handler(root(home), home, []).
@@ -43,37 +47,32 @@ http:location(api1, api(v1), []).
 %% A página de cadastro de novos usuários
 %:- http_handler( root(cadastro), cadastro_usuario:cadastro, []).
 
-%===========================================================
-
-%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%Rotas da API(inseri a api de vocês, by.:gustavo)
 
 :- http_handler(api1(usuarios/Id), usuarios:usuarios(Metodo, Id),
                  [ method(Metodo),
                    methods([ get, post, put, delete ]) ]).
+
 
 :- http_handler(api1(dentistas/Id), dentistas:dentistas(Metodo, Id),
                  [ method(Metodo),
                    methods([ get, post, put, delete ]) ]).
 
 
-%conferir se as inserções abaixo está correta (by.: gustavo, para Mathues):
-
 :- http_handler(api1(anamneses/Id),anamneses:anamneses(Metodo, Id),
                  [ method(Metodo),
                    methods([ get, post, put, delete ]) ]).
+
 
 :- http_handler(api1(schedules/Id),schedules:schedules(Metodo, Id),
                  [ method(Metodo),
                    methods([ get, post, put, delete ]) ]).
 
-%conferir se as inserções abaixo está correta (by.: gustavo, para Gabriel):
 
 :- http_handler(api1(convenios/Id), convenios:convenios(Metodo, Id),
                  [ method(Metodo),
                    methods([ get, post, put, delete ]) ]).
 
+
 :- http_handler(api1(pacientes/Id), pacientes:pacientes(Metodo, Id),
                  [ method(Metodo),
                    methods([ get, post, put, delete ]) ]).
-%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

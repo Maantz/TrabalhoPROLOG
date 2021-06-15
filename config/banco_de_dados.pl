@@ -1,21 +1,19 @@
-%Banco de dados
-
-%Coloque aqui todas as tabelas do banco.
-%inserir as outras tabelas no arquivo (bd/tabelas/...)
 tabela(chave).
 tabela(usuario).
 tabela(dentista).
+tabela(convenio).
+tabela(paciente).
+tabela(anamnese).
+tabela(schedule).
 
 
-
-%Não mexa daqui em diante
-
-:-initialization(carrega_tabelas).
+:-initialization( carrega_tabelas ).
 
 
 carrega_tabelas():-
     findall(Tab, tabela(Tab), Tabs),
     maplist(carrega_tab,Tabs).
+
 
 carrega_tab(Tabela):-
     use_module(bd(Tabela),[]),

@@ -11,14 +11,12 @@
 
 
 :- use_module(library(persistency)).
-
-
-:- use_module(chave_pac, []).
+:- use_module(chave, []).
 
 
 :- persistent
     paciente(
-        id_pac:positive_integer, % chave primária
+        paciente_id:positive_integer, % chave primária
         loginP:string,
         codConvenio:string
     ).  
@@ -33,25 +31,26 @@ carrega_tab(ArqTabela):-
     db_attach(ArqTabela, []).
 
 
-insere(Id_pac, LoginP, CodConvenio):-
-    chave_pac:pk_pac(paciente, Id_pac),
+insere(Paciente_id, LoginP, CodConvenio):-
+    chave:pk(paciente, Paciente_id),
     with_mutex(
         paciente,
-        assert_paciente(Id_pac, LoginP, CodConvenio)
-    ).
-
-remove(Id_pac):-
-    with_mutex(
-        paciente,
-        retractall_paciente(Id_pac, _LoginP, _CodConvenio)
+        assert_paciente(Paciente_id, LoginP, CodConvenio)
     ).
 
 
-atualiza(Id_pac, LoginP, CodConvenio):-
+remove(Paciente_id):-
+    with_mutex(
+        paciente,
+        retractall_paciente(Paciente_id, _LoginP, _CodConvenio)
+    ).
+
+
+atualiza(Paciente_id, LoginP, CodConvenio):-
     with_mutex(
         paciente,
         (
-            retract_paciente(Id_pac, _LoginPAnt, _CodConvenioAnt),
-            assert_paciente(Id_pac, LoginP, CodConvenio)
+            retract_paciente(Paciente_id, _LoginPAnt, _CodConvenioAnt),
+            assert_paciente(Paciente_id, LoginP, CodConvenio)
         )
     ).
