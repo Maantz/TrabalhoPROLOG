@@ -16,8 +16,13 @@ usuario(_Pedido):-
         [ div(class(container),
               [ \html_requires(js('rest.js')),
                 \html_requires(js('comum.js')),
-                h1('Cadastro de Usuários'),
+                \navegacao('menu-topo'),
+                p(''),
+                p(''),
+                h1(class("my-5 text-center"),
+                    'Cadastro de Dentista'),
                 \form_usuario(RotaDeRetorno),
+                 p(''),
                 \retornar
               ]) ]).
 

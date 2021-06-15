@@ -12,12 +12,14 @@
 :-load_files([  gabarito(bootstrap5),         % <----------- ver essa questão(frontent)
                 gabarito(boot5rest),
                 frontend(pg_entrada),
+                frontend(pg_usuario),
+                frontend(pg_dentista),
                 frontend(pg_agenda),
                 frontend(pg_anamnese),
                 frontend(pg_convenio),
                 frontend(pg_paciente),
                 frontend(menu_topo),
-                frontend(icones),
+                frontend(icones)
 
               ],
               [ silent(true),

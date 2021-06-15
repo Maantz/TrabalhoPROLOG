@@ -37,8 +37,8 @@ http:location(api1, api(v1), []).
 %Rotas do Frontend(editar aqui conforme formos avançando no frontend)
 :-http_handler(root(.), entrada,   []).
 :- http_handler(root(home), home, []).
-:- http_handler(root(pg_dentista), dentista, []).
-:-http_handler(root(pg_usuario), usuario, []).
+:- http_handler(root(dentista), dentista, []).
+:-http_handler(root(usuario), usuario, []).
 
 :-http_handler(root(tab_usuarios), tab_usuarios, []). %tabela de usuarios
 
