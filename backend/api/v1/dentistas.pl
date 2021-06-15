@@ -1,12 +1,4 @@
-﻿:- module(
-    dentistas,
-    [
-        dentistas/3
-    ]
-).
-
-
-:- use_module(library(http/http_parameters)).
+﻿:- use_module(library(http/http_parameters)).
 :- use_module(library(http/http_header)).
 :- use_module(library(http/http_json)).
 :- use_module(bd(dentista), []).

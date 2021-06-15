@@ -1,41 +1,34 @@
-:- module(
-       tabela_usuarios,
-       [
-           tab_usuarios//1
-       ]
-   ).
-
-
 :- use_module(library(http/html_write)).
 :- use_module(library(http/html_head)).
+:- use_module(bd(usuario), []).
+:- use_module(tabela_usuarios).
+
+
+entrada_usuario(_Pedido):-
+    apelido_rota(root(entrada_usuario), RotaDeRetorno),
+    reply_html_page(
+        boot5rest,
+        [ title('Pagina dos Usuarios')],
+        [ \html_requires(css('custom.css')),
+          \html_requires(css('entrada.css')),
+          h2('Pagina dos Usuarios'),
+          \navegacao('menu-topo'),
+          \tabela_usuarios(RotaDeRetorno)
+        ]
+    ).
 
 
 tabela_usuarios(RotaDeRetorno) -->
-    html(div(class('container-fluid py-2'),
-             [ \tabela(RotaDeRetorno) ]
-            )).
-
-
-cabeca_da_tabela(Titulo, Link) -->
-    html( div(class('d-flex p-1'),
-              [ div(class('me-auto'), h2(b(Titulo))),
-                div(class(''),
-                    a([ href(Link), class('btn btn-primary')],
-                      'Novo'))
-              ]) ).
-
-
-tabela(RotaDeRetorno) -->
     html(div(class('row justify-content-center'),
              div( class('col-md-8'),
                   [ \cabeca_da_tabela('Usuarios', '/usuario'),
                     table(class('table table-striped table-responsive-md'),
-                        [ \cabecalho,
-                          tbody(\corpo_tabela(RotaDeRetorno))
+                        [ \cabecalho_usuarios,
+                          tbody(\corpo_tabela_usuarios(RotaDeRetorno))
                         ])]))).
 
 
-cabecalho -->
+cabecalho_usuarios -->
     html(thead(tr([ th([scope(col)], '#'),
                     th([scope(col)], 'Nome'),
                     th([scope(col)], 'Email'),
@@ -44,22 +37,21 @@ cabecalho -->
                   ]))).
 
 
-corpo_tabela(RotaDeRetorno) -->
+corpo_tabela_usuarios(RotaDeRetorno) -->
     {
-        findall( tr([th(scope(row), Id), td(Titulo), td(Link), td(Acoes)]),
-                 linha(Id, Titulo, Link, Acoes, RotaDeRetorno),
+        findall( tr([th(scope(row), Id), td(Nome), td(Email), td(Senha), td(Acoes)]),
+                 linha_usuarios(Id, Nome, Email, Senha, Acoes, RotaDeRetorno),
                  Linhas )
     },
     html(Linhas).
 
 
-linha(Id, Titulo, Link, Acoes, RotaDeRetorno):-
+linha_usuarios(Id, Nome, Email, Senha, Acoes, RotaDeRetorno):-
     usuario:usuario(Id, Nome, Email, Senha),
-    acoes(Id, RotaDeRetorno, Acoes),
-    Link = a([href(URL)], URL).
+    acoes_usuarios(Id, RotaDeRetorno, Acoes).
 
 
-acoes(Id, RotaDeRetorno, Campo):-
+acoes_usuarios(Id, RotaDeRetorno, Campo):-
     Campo = [ a([ class('text-success'), title('Alterar'),
                   href('/usuario/editar/~w' - Id),
                   'data-toggle'(tooltip)],

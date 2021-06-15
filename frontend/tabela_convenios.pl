@@ -1,41 +1,34 @@
-:- module(
-       tabela_convenios,
-       [
-           tab_convenios//1
-       ]
-   ).
-
-
 :- use_module(library(http/html_write)).
 :- use_module(library(http/html_head)).
+:- use_module(bd(convenio), []).
+:- use_module(tabela_convenios).
+
+
+entrada_convenio(_Pedido):-
+    apelido_rota(root(entrada_convenio), RotaDeRetorno),
+    reply_html_page(
+        boot5rest,
+        [ title('Pagina de Convenios')],
+        [ \html_requires(css('custom.css')),
+          \html_requires(css('entrada.css')),
+          h2('Pagina de Convenios'),
+          \navegacao('menu-topo'),
+          \tabela_convenios(RotaDeRetorno)
+        ]
+    ).
 
 
 tabela_convenios(RotaDeRetorno) -->
-    html(div(class('container-fluid py-2'),
-             [ \tabela(RotaDeRetorno) ]
-            )).
-
-
-cabeca_da_tabela(Titulo, Link) -->
-    html( div(class('d-flex p-1'),
-              [ div(class('me-auto'), h2(b(Titulo))),
-                div(class(''),
-                    a([ href(Link), class('btn btn-primary')],
-                      'Novo'))
-              ]) ).
-
-
-tabela(RotaDeRetorno) -->
     html(div(class('row justify-content-center'),
              div( class('col-md-8'),
                   [ \cabeca_da_tabela('Convenios', '/convenio'),
                     table(class('table table-striped table-responsive-md'),
-                        [ \cabecalho,
-                          tbody(\corpo_tabela(RotaDeRetorno))
+                        [ \cabecalho_convenios,
+                          tbody(\corpo_tabela_convenios(RotaDeRetorno))
                         ])]))).
 
 
-cabecalho -->
+cabecalho_convenios -->
     html(thead(tr([ th([scope(col)], '#'),
                     th([scope(col)], 'Codigo do Convenio'),
                     th([scope(col)], 'Razao Social'),
@@ -43,22 +36,21 @@ cabecalho -->
                   ]))).
 
 
-corpo_tabela(RotaDeRetorno) -->
+corpo_tabela_convenios(RotaDeRetorno) -->
     {
-        findall( tr([th(scope(row), Id), td(Titulo), td(Link), td(Acoes)]),
-                 linha(Id, Titulo, Link, Acoes, RotaDeRetorno),
+        findall( tr([th(scope(row), Id), td(CodConvenio), td(RazaoSocial), td(Acoes)]),
+                 linha_convenios(Id, CodConvenio, RazaoSocial, Acoes, RotaDeRetorno),
                  Linhas )
     },
     html(Linhas).
 
 
-linha(Id, Titulo, Link, Acoes, RotaDeRetorno):-
+linha_convenios(Id, CodConvenio, RazaoSocial, Acoes, RotaDeRetorno):-
     convenio:convenio(Id, CodConvenio, RazaoSocial),
-    acoes(Id, RotaDeRetorno, Acoes),
-    Link = a([href(URL)], URL).
+    acoes_convenios(Id, RotaDeRetorno, Acoes).
 
 
-acoes(Id, RotaDeRetorno, Campo):-
+acoes_convenios(Id, RotaDeRetorno, Campo):-
     Campo = [ a([ class('text-success'), title('Alterar'),
                   href('/convenio/editar/~w' - Id),
                   'data-toggle'(tooltip)],
