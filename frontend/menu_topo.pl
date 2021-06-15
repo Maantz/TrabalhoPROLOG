@@ -1,4 +1,4 @@
-:- use_module(library(http/html_write)).
+﻿:- use_module(library(http/html_write)).
 :- use_module(library(http/html_head)).
 
 :- ensure_loaded(gabarito(bootstrap5)).
