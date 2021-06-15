@@ -46,7 +46,7 @@ anamneses(Metodo, Anamnese_id, _Pedido):-
     throw(http_reply(method_not_allowed(Metodo, Anamnese_id))).
 
 
-insere_tupla_Anamnese(_{medicamento:Medicamento, tiposangue:Sangue, doenca:Doenca, alergia:Alergia, fumante:Fumante, gestante:Gestante}):-
+insere_tupla_anamnese(_{medicamento:Medicamento, tiposangue:Sangue, doenca:Doenca, alergia:Alergia, fumante:Fumante, gestante:Gestante}):-
     anamnese:insere(Anamnese_id, Medicamento, Sangue, Doenca, Alergia, Fumante, Gestante)
     -> envia_tupla_anamnese(Anamnese_id).
 
