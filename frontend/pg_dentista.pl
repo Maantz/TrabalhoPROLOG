@@ -51,7 +51,9 @@ editar_dentista(AtomId, Pedido):-
         [ title('Cadastro de Dentista')],
         [ div(class(container),
               [ \html_requires(js('comum.js')),
-                h1('Dentistas'),
+                \html_requires(css('custom.css')),
+                h1(class("my-5 text-center pforms"),
+                    'Dentistas'),
                 \form_edicao_dentista(Dentista_id, CRO, RotaDeRetorno)
               ]) ])
     ; throw(http_reply(not_found(Dentista_id)))

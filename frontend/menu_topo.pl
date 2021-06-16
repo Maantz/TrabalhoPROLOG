@@ -6,7 +6,7 @@
 
 
 navegacao(Id) -->
-    html(nav([ class='navbar navbar-expand-lg navbar-light bg-light fixed-top'],
+    html(nav([ class='navbar navbar-expand-lg navbar-light bg-light fixed-top block-3'],
              [ div(class('container-fluid'),
                    [ a([ class='navbar-brand ', href= #],
                        ['Clínica OdontoLOG']),

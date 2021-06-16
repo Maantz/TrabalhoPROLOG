@@ -7,7 +7,7 @@
 
 
 :- encoding(utf8).
-<-- ver isso
+%<-- ver isso
 
 agenda(Pedido) :-
     (memberchk(referer(RotaDeRetorno), Pedido) ; RotaDeRetorno = '/' ),
@@ -62,7 +62,9 @@ editar_agenda(AtomId, Pedido):-
         [ title('Cadastro de Agenda')],
         [ div(class(container),
               [ \html_requires(js('comum.js')),
-                h1('Agendas'),
+                \html_requires(css('custom.css')),
+                h1(class("my-5 text-center pforms"),
+                    'Agendas'),
                 \form_edicao_agenda(Schedule_id, Date, Datetime, Reason, Notes, Phone, RotaDeRetorno)
               ]) ])
     ; throw(http_reply(not_found(Schedule_id)))

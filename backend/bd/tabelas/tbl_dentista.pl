@@ -1,1 +1,2 @@
-created(1623824124.784336).
+created(1623862213.222464).
+assert(dentista(10,"aaaaa")).

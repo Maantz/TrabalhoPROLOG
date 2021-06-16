@@ -62,7 +62,9 @@ editar_anamnese(AtomId, Pedido):-
         [ title('Cadastro de Anamnese')],
         [ div(class(container),
               [ \html_requires(js('comum.js')),
-                h1('Anamneses'),
+                \html_requires(css('custom.css')),
+                h1(class("my-5 text-center pforms"),
+                    'Anamneses'),
                 \form_edicao_anamnese(Anamnese_id, Medicamento, TipoSangue, Doenca, Alergia, Fumante, Gestante, RotaDeRetorno)
               ]) ])
     ; throw(http_reply(not_found(Anamnese_id)))
