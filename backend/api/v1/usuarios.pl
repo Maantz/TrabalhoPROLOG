@@ -58,7 +58,7 @@ envia_tupla_usuario(Usuario_id):-
 
 
 envia_tabela_usuario :-
-    findall( _{ usuario:id:Usuario_id, nome:Nome, email:Email},
+    findall( _{ usuario_id:Usuario_id, nome:Nome, email:Email},
              usuario:usuario(Usuario_id, Nome, Email, _Senha),
             Tuplas),
     reply_json_dict(Tuplas).
