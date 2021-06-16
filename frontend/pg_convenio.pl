@@ -59,7 +59,9 @@ editar_convenio(AtomId, Pedido):-
         [ title('Cadastro de Novo Convenio')],
         [ div(class(container),
               [ \html_requires(js('comum.js')),
-                h1('Convenios'),
+                \html_requires(css('custom.css')),
+                h1(class("my-5 text-center pforms"),
+                    'Convenios'),
                 \form_edicao_convenio(Convenio_id, CodConvenio, RazaoSocial, RotaDeRetorno),
                 p(''),
                 \retornar

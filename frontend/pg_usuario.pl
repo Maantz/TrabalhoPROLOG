@@ -50,7 +50,9 @@ editar_usuario(AtomId, Pedido):-
         [ title('Cadastro de Usuario')],
         [ div(class(container),
               [ \html_requires(js('comum.js')),
-                h1('Usuarios'),
+                \html_requires(css('custom.css')),
+                h1(class("my-5 text-center pforms"),
+                  'Usuarios'),
                 \form_edicao_usuario(Usuario_id, Nome, Email, Senha, RotaDeRetorno),
                 p(''),
                 \retornar

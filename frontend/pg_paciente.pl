@@ -59,7 +59,9 @@ editar_paciente(AtomId, Pedido):-
         [ title('Cadastro de Novo Paciente')],
         [ div(class(container),
               [ \html_requires(js('comum.js')),
-                h1('Pacientes'),
+                \html_requires(css('custom.css')),
+                h1(class("my-5 text-center pforms"),
+                    'Pacientes'),
                 \form_edicao_paciente(Paciente_id, LoginP, CodConvenio, RotaDeRetorno),
                 p(''),
                 \retornar

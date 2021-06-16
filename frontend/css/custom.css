@@ -22,9 +22,25 @@ body {
     border-radius: 10px;
 }
 #propaganda{
-    padding-top: 100px;
+    padding-top: 10px;
     margin-top: 20px;
+    position:absolute;
+    left:50%;
+    top: 50%;
+    transform: translate3d(-50%,-50%,0);
 }
+@media only screen and (max-width: 1024px) {
+    #propaganda {
+      width: 100%;
+    }
+}
+@media only screen and (max-width: 700px) {
+    #propaganda {
+      width: 100%;
+      height: 100%;
+    }
+}
+
 
 .block-2
 {   
@@ -32,16 +48,18 @@ body {
     padding-top: 10px;
     background-color:white;
     border-radius: 10px;
+    width: 100%;
+    height: 100%;
 }
 
 .block-3
 {
-    background-color: #001f68;
+    background-color: #c6fff7;
 }
 .botao{
     background-color: #20dad8;
     border-color: #20dad8;
-    color:#004780;
+    color:white;
     border-width: 1.5px;
     border-radius: 5px;
 }
@@ -50,14 +68,6 @@ body {
 }
 #agenda-form{
     color:#001f68;
-}
-
-.botaoforms{
-    background-color: #20dad8;
-    border-color: #004780;
-    color:#004780;
-    border-width: 1.5px;
-    border-radius: 1.5px;
 }
 .pforms{
     color:#20dad8;
