@@ -30,7 +30,7 @@ dentistas(put, AtomId, Pedido):-
 dentistas(delete, AtomId, _Pedido):-
     atom_number(AtomId, Dentista_id),
     !,
-    usuario:remove(Dentista_id),
+    dentista:remove(Dentista_id),
     throw(http_reply(no_content)).
 
 
