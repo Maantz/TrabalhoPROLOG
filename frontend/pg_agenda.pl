@@ -9,7 +9,8 @@
 :- encoding(utf8).
 
 
-agenda(_Pedido) :-
+agenda(Pedido) :-
+    (memberchk(referer(RotaDeRetorno), Pedido) ; RotaDeRetorno = '/' ),
     reply_html_page(
         boot5rest,
         [ title('Cadastro - Agenda')],
@@ -24,7 +25,7 @@ agenda(_Pedido) :-
                 p(''),
                 h1(class("my-5 text-center pforms"),
                     'Cadastro de Nova Agenda'),
-                \form_agenda,
+                \form_agenda(RotaDeRetorno),
                 p(''),
                 \retornar
             ])
@@ -32,11 +33,11 @@ agenda(_Pedido) :-
     ).
 
 
-form_agenda -->
+form_agenda(RotaDeRetorno)-->
     html(form(
         [
             id('agenda-form'),
-            onsubmit("redirecionaResposta( event, '/' )"),
+            onsubmit("redirecionaResposta( event, '~w' )" - RotaDeRetorno),
             action('/api/v1/schedules/')
         ],
         [
@@ -62,7 +63,7 @@ editar_agenda(AtomId, Pedido):-
         [ title('Cadastro de Agenda')],
         [ div(class(container),
               [ \html_requires(js('rest.js')),
-                \html_requires(js('custom.js')),
+                \html_requires(js('comum.js')),
                 h1('Agendas'),
                 \form_edicao_agenda(Schedule_id, Date, Datetime, Reason, Notes, Phone, RotaDeRetorno)
               ]) ])

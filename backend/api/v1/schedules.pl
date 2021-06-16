@@ -39,13 +39,13 @@ schedules(Metodo, Schedule_id, _Pedido) :-
 
 
 insere_tupla_schedule( _{ date:Date, datetime:Datetime, reason:Reason, notes:Notes, phone:Phone }):-
-    schedule:insere(Schedule_ID, Date, Datetime, Reason, Notes, Phone)
-    -> envia_tupla_schedule(Schedule_ID).
+    schedule:insere(Schedule_id, Date, Datetime, Reason, Notes, Phone)
+    -> envia_tupla_schedule(Schedule_id).
  
 atualiza_tupla_schedule( _{ date:Date, datetime:Datetime,reason:Reason,notes:Notes,phone:Phone }, Schedule_id):-
-       schedule:atualiza(Schedule_ID, Date, Datetime, Reason, Notes, Phone)
-    -> envia_tupla_schedule(Schedule_ID)
-    ;  throw(http_reply(not_found(Schedule_ID))).
+       schedule:atualiza(Schedule_id, Date, Datetime, Reason, Notes, Phone)
+    -> envia_tupla_schedule(Schedule_id)
+    ;  throw(http_reply(not_found(Schedule_id))).
 
 
 envia_tupla_schedule(Schedule_id):-

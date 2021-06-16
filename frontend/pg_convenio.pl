@@ -8,21 +8,22 @@
 :- encoding(utf8).
 
 
-convenio(_Pedido) :-
+convenio(Pedido) :-
+    (memberchk(referer(RotaDeRetorno), Pedido) ; RotaDeRetorno = '/' ),
     reply_html_page(
         boot5rest,
         [title('Cadastro - Convenio')],
         [div(class(container),
             [   \html_requires(css('custom.css')),
                 \html_requires(js('rest.js')),
-                \html_requires(js('custom.js')),
+                \html_requires(js('comum.js')),
                 p(''),
                 p(''),
                 p(''),
                 p(''),
                 h1(class("my-5 text-center pforms"),
                     'Cadastro de Novo Convenio'),
-                \form_convenio,
+                \form_convenio(RotaDeRetorno),
                 p(''),
                 \retornar
             ])
@@ -30,11 +31,11 @@ convenio(_Pedido) :-
     ).
 
 
-form_convenio -->
+form_convenio(RotaDeRetorno)-->
     html(form(
             [
                 id('convenio-form'),
-                onsubmit("redirecionaResposta( event, '/' )"),
+                onsubmit("redirecionaResposta( event, '~w' )" - RotaDeRetorno),
                 action('/api/v1/convenios/')
             ],
             [

@@ -8,7 +8,8 @@
 :- encoding(utf8).
 
 
-paciente(_Pedido) :-
+paciente(Pedido) :-
+    (memberchk(referer(RotaDeRetorno), Pedido) ; RotaDeRetorno = '/' ),
     reply_html_page(
         boot5rest,
         [title('Cadastro - Paciente')],
@@ -22,7 +23,7 @@ paciente(_Pedido) :-
                 p(''),
                 h1(class("my-5 text-center pforms"),
                     'Cadastro de Novo Paciente'),
-                \form_paciente,
+                \form_paciente(RotaDeRetorno),
                 p(''),
                 \retornar
             ])
@@ -30,11 +31,11 @@ paciente(_Pedido) :-
     ).
 
 
-form_paciente -->
+form_paciente(RotaDeRetorno)-->
     html(form(
             [
                 id('paciente-form'),
-                onsubmit("redirecionaResposta( event, '/' )"),
+                onsubmit("redirecionaResposta( event, '~w' )" - RotaDeRetorno),
                 action('/api/v1/pacientes/')
             ],
             [
@@ -59,7 +60,7 @@ editar_paciente(AtomId, Pedido):-
         [ title('Cadastro de Novo Paciente')],
         [ div(class(container),
               [ \html_requires(js('rest.js')),
-                \html_requires(js('custom.js')),
+                \html_requires(js('comum.js')),
                 h1('Pacientes'),
                 \form_edicao_paciente(Paciente_id, LoginP, CodConvenio, RotaDeRetorno)
               ]) ])

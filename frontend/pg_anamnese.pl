@@ -9,7 +9,8 @@
 :- encoding(utf8).
  
  
-anamnese(_Pedido):-
+anamnese(Pedido):-
+    (memberchk(referer(RotaDeRetorno), Pedido) ; RotaDeRetorno = '/' ),
     reply_html_page(
         boot5rest,
         [ title('Receitas - Paciente')],
@@ -23,7 +24,7 @@ anamnese(_Pedido):-
                 p(''),
                 h1(class("my-5 text-center pforms"),
                     'Cadastro de Nova Anamnese'),
-                \form_anamnese,
+                \form_anamnese(RotaDeRetorno),
                 p(''),
                 \retornar
             ])
@@ -31,11 +32,11 @@ anamnese(_Pedido):-
     ).
 
 
-form_anamnese -->
+form_anamnese(RotaDeRetorno)-->
     html(form(
             [
                 id('anamnese-form'),
-                onsubmit("redirecionaResposta( event, '/' )"),
+                onsubmit("redirecionaResposta( event, '~w' )" - RotaDeRetorno),
                 action('/api/v1/anamneses/')
             ],
             [
@@ -62,7 +63,7 @@ editar_anamnese(AtomId, Pedido):-
         [ title('Cadastro de Anamnese')],
         [ div(class(container),
               [ \html_requires(js('rest.js')),
-                \html_requires(js('custom.js')),
+                \html_requires(js('comum.js')),
                 h1('Anamneses'),
                 \form_edicao_anamnese(Anamnese_id, Medicamento, TipoSangue, Doenca, Alergia, Fumante, Gestante, RotaDeRetorno)
               ]) ])

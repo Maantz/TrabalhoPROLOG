@@ -29,9 +29,9 @@ usuarios(put, AtomId, Pedido):-
 
 
 usuarios(delete, AtomId, _Pedido):-
-    atom_number(AtomId, Usuario_ID),
+    atom_number(AtomId, Usuario_id),
     !,
-    usuario:remove(Usuario_ID),
+    usuario:remove(Usuario_id),
     throw(http_reply(no_content)).
 
 
@@ -40,15 +40,15 @@ usuarios(Metodo, Usuario_id, _Pedido) :-
 
 
 insere_tupla_usuario( _{nome:Nome, email:Email, senha:Senha} ):-
-    usuario:insere(Usuario_ID, Nome, Email, Senha)
-    -> envia_tupla_usuario(Usuario_ID)
+    usuario:insere(Usuario_id, Nome, Email, Senha)
+    -> envia_tupla_usuario(Usuario_id)
     ;  throw(http_reply(bad_request('Email ja cadastrado'))).
 
 
 atualiza_tupla_usuario( _{nome:Nome, email:Email, senha:Senha}, Usuario_id ):-
-    usuario:atualiza(Usuario_ID, Nome, Email, Senha)
-    -> envia_tupla_usuario(Usuario_ID)
-    ;  throw(http_reply(not_found(Usuario_ID))).
+    usuario:atualiza(Usuario_id, Nome, Email, Senha)
+    -> envia_tupla_usuario(Usuario_id)
+    ;  throw(http_reply(not_found(Usuario_id))).
 
 
 envia_tupla_usuario(Usuario_id):-

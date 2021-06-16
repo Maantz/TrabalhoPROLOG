@@ -39,13 +39,13 @@ anamneses(Metodo, Anamnese_id, _Pedido):-
 
 
 insere_tupla_anamnese(_{medicamento:Medicamento, tiposangue:Sangue, doenca:Doenca, alergia:Alergia, fumante:Fumante, gestante:Gestante}):-
-    anamnese:insere(Anamnese_ID, Medicamento, Sangue, Doenca, Alergia, Fumante, Gestante)
-    -> envia_tupla_anamnese(Anamnese_ID).
+    anamnese:insere(Anamnese_id, Medicamento, Sangue, Doenca, Alergia, Fumante, Gestante)
+    -> envia_tupla_anamnese(Anamnese_id).
 
 atualiza_tupla_anamnese( _{medicamento:Medicamento, tiposangue:Sangue, doenca:Doenca, alergia:Alergia, fumante:Fumante, gestante:Gestante}, Anamnese_id):-
-       anamnese:atualiza(Anamnese_ID, Medicamento, Sangue, Doenca, Alergia, Fumante, Gestante)
-    -> envia_tupla_anamnese(Anamnese_ID)
-    ;  throw(http_reply(not_found(Anamnese_ID))).
+       anamnese:atualiza(Anamnese_id, Medicamento, Sangue, Doenca, Alergia, Fumante, Gestante)
+    -> envia_tupla_anamnese(Anamnese_id)
+    ;  throw(http_reply(not_found(Anamnese_id))).
 
 
 envia_tupla_anamnese(Anamnese_id):-
@@ -54,7 +54,7 @@ envia_tupla_anamnese(Anamnese_id):-
     ;  throw(http_reply(not_found(Anamnese_id))).
 
 
-envia_tabela_anamnese :-
+envia_tabela_anamnese:-
     findall( _{anamnese_id:Anamnese_id, medicamento:Medicamento, tiposangue:Sangue, doenca:Doenca, alergia:Alergia, fumante:Fumante, gestante:Gestante},
              anamnese:anamnese(Anamnese_id, Medicamento, Sangue, Doenca, Alergia, Fumante, Gestante),
              Tuplas ),

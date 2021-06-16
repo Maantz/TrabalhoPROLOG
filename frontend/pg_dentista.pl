@@ -8,7 +8,8 @@
 :- encoding(utf8).
 
 
-dentista(_Pedido):-
+dentista(Pedido):-
+    (memberchk(referer(RotaDeRetorno), Pedido) ; RotaDeRetorno = '/' ),
     reply_html_page(
         boot5rest,
         [title('Clinica Odontologica')],
@@ -22,15 +23,15 @@ dentista(_Pedido):-
                 p(''),
                 h1(class("my-5 text-center pforms"),
                     'Cadastro de Novo Dentista'),
-            \form_dentista,
+            \form_dentista(RotaDeRetorno),
             p(''),
             \retornar])]
     ).
 
 
-form_dentista -->
+form_dentista(RotaDeRetorno)-->
     html(form([id('dentista-form'),
-                onsubmit("redirecionaResposta(event, '/' )"),
+                onsubmit("redirecionaResposta( event, '~w' )" - RotaDeRetorno),
                 action('/api/v1/dentistas/')],
                 [   \metodo_de_envio('POST'),
                     \campo(cro, 'CRO', text),
@@ -51,7 +52,7 @@ editar_dentista(AtomId, Pedido):-
         [ title('Cadastro de Dentista')],
         [ div(class(container),
               [ \html_requires(js('rest.js')),
-                \html_requires(js('custom.js')),
+                \html_requires(js('comum.js')),
                 h1('Dentistas'),
                 \form_edicao_dentista(Dentista_id, CRO, RotaDeRetorno)
               ]) ])

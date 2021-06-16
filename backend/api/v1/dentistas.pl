@@ -24,7 +24,7 @@ dentistas(put, AtomId, Pedido):-
     atom_number(AtomId, Dentista_id),
     http_read_json_dict(Pedido, Dados),
     !,
-    atualiza_tupla(Dados, Dentista_id).
+    atualiza_tupla_dentista(Dados, Dentista_id).
 
 
 dentistas(delete, AtomId, _Pedido):-
@@ -39,15 +39,15 @@ dentistas(Metodo, Dentista_id, _Pedido) :-
 
 
 insere_tupla_dentista( _{cro:CRO} ):-
-    dentista:insere(Dentista_ID, CRO)
-    -> envia_tupla_dentista(Dentista_ID)
+    dentista:insere(Dentista_id, CRO)
+    -> envia_tupla_dentista(Dentista_id)
     ;  throw(http_reply(bad_request('Dentista ja cadastrado'))).
 
 
 atualiza_tupla_dentista( _{cro:CRO}, Dentista_id ):-
-       dentista:atualiza(Dentista_ID, CRO)
-    -> envia_tupla_dentista(Dentista_ID)
-    ;  throw(http_reply(not_found(Dentista_ID))).
+       dentista:atualiza(Dentista_id, CRO)
+    -> envia_tupla_dentista(Dentista_id)
+    ;  throw(http_reply(not_found(Dentista_id))).
 
 
 envia_tupla_dentista(Dentista_id):-

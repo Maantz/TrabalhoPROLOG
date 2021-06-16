@@ -29,7 +29,7 @@ usuario(Pedido):-
               ]) ]).
               
 
-form_usuario(RotaDeRetorno) -->
+form_usuario(RotaDeRetorno)-->
     html(form([ id('usuario-form'),
                 onsubmit("redirecionaResposta( event, '~w' )" - RotaDeRetorno),
                 action('/api/v1/usuarios/') ],
