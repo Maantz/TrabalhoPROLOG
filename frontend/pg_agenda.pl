@@ -52,7 +52,7 @@ form_agenda -->
 ).
 
 
-editar_schedule(AtomId, _Pedido):-
+editar_agenda(AtomId, _Pedido):-
     atom_number(AtomId, Schedule_id),
     ( schedule:schedule(Schedule_id, Date, Datetime, Reason, Notes, Phone)
     ->

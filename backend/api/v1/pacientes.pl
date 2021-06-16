@@ -40,14 +40,14 @@ pacientes(Metodo, Paciente_id, _Pedido) :-
 
 insere_tupla_paciente( _{loginP:LoginP, codConvenio:CodConvenio} ):-
     paciente:insere(Paciente_ID, LoginP, CodConvenio)
-    -> envia_tupla_paciente(Paciente_IDF)
+    -> envia_tupla_paciente(Paciente_ID)
     ;  throw(http_reply(bad_request('URL ausente'))).
 
 
-atualiza_tupla_paciente( _{loginP:LoginP, codConvenio:CodConvenio}, Paciente_id ):-
+atualiza_tupla_paciente( _{loginP:LoginP, codConvenio:CodConvenio}, _Paciente_id ):-
        paciente:atualiza(Paciente_ID, LoginP, CodConvenio)
     -> envia_tupla_paciente(Paciente_ID)
-    ;  throw(http_reply(not_found(Paciente_ID))).
+    ;  throw(http_reply(not_found(_Paciente_ID))).
 
 
 envia_tupla_paciente(Paciente_id):-

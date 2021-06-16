@@ -45,10 +45,10 @@ insere_tupla_usuario( _{nome:Nome, email:Email, senha:Senha} ):-
     ;  throw(http_reply(bad_request('Email ja cadastrado'))).
 
 
-atualiza_tupla_usuario( _{nome:Nome, email:Email, senha:Senha}, Usuario_id ):-
+atualiza_tupla_usuario( _{nome:Nome, email:Email, senha:Senha}, _Usuario_id ):-
     usuario:atualiza(Usuario_ID, Nome, Email, Senha)
     -> envia_tupla_usuario(Usuario_ID)
-    ;  throw(http_reply(not_found(Usuario_ID))).
+    ;  throw(http_reply(not_found(_Usuario_ID))).
 
 
 envia_tupla_usuario(Usuario_id):-

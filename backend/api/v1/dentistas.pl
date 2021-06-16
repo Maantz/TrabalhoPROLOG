@@ -44,10 +44,10 @@ insere_tupla_dentista( _{cro:CRO} ):-
     ;  throw(http_reply(bad_request('Dentista ja cadastrado'))).
 
 
-atualiza_tupla_dentista( _{cro:CRO}, Dentista_id ):-
+atualiza_tupla_dentista( _{cro:CRO}, _Dentista_id ):-
        dentista:atualiza(Dentista_ID, CRO)
     -> envia_tupla_dentista(Dentista_ID)
-    ;  throw(http_reply(not_found(Dentista_ID))).
+    ;  throw(http_reply(not_found(_Dentista_ID))).
 
 
 envia_tupla_dentista(Dentista_id):-
