@@ -62,7 +62,9 @@ editar_paciente(AtomId, Pedido):-
                 \html_requires(css('custom.css')),
                 h1(class("my-5 text-center pforms"),
                     'Pacientes'),
-                \form_edicao_paciente(Paciente_id, LoginP, CodConvenio, RotaDeRetorno)
+                \form_edicao_paciente(Paciente_id, LoginP, CodConvenio, RotaDeRetorno),
+                p(''),
+                \retornar
               ]) ])
     ; throw(http_reply(not_found(Paciente_id)))
     ).

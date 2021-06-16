@@ -65,7 +65,9 @@ editar_anamnese(AtomId, Pedido):-
                 \html_requires(css('custom.css')),
                 h1(class("my-5 text-center pforms"),
                     'Anamneses'),
-                \form_edicao_anamnese(Anamnese_id, Medicamento, TipoSangue, Doenca, Alergia, Fumante, Gestante, RotaDeRetorno)
+                \form_edicao_anamnese(Anamnese_id, Medicamento, TipoSangue, Doenca, Alergia, Fumante, Gestante, RotaDeRetorno),
+                p(''),
+                \retornar
               ]) ])
     ; throw(http_reply(not_found(Anamnese_id)))
     ).
@@ -76,19 +78,19 @@ form_edicao_anamnese(Anamnese_id, Medicamento, TipoSangue, Doenca, Alergia, Fuma
                 onsubmit("redirecionaResposta( event, '~w' )" - RotaDeRetorno),
                 action('/api/v1/anamneses/~w' - Anamnese_id) ],
               [ \metodo_de_envio('PUT'),
-                \campo_nao_editavel(anamnese_id, 'Anamnese_id', text, Anamnese_id),
+                \campo_nao_editavel(anamnese_id, 'Id', text, Anamnese_id),
                 p(''),
-                \campo(Medicamento, 'Medicamento: ', text, Medicamento),
+                \campo(medicamento, 'Medicamento: ', text, Medicamento),
                 p(''),
-                \campo(TipoSangue, 'Tipo Sanguineo: ', text, TipoSangue),
+                \campo(tiposangue, 'Tipo Sanguineo: ', text, TipoSangue),
                 p(''),
-                \campo(Doenca, 'Doenca: ', text, Doenca),
+                \campo(doenca, 'Doenca: ', text, Doenca),
                 p(''),
-                \campo(Alergia, 'Alergia: ', text, Alergia),
+                \campo(alergia, 'Alergia: ', text, Alergia),
                 p(''),
-                \campo(Fumante, 'Fumante: ', text, Fumante),
+                \campo(fumante, 'Fumante: ', text, Fumante),
                 p(''),
-                \campo(Gestante, 'Gestante: ', text, Gestante),
+                \campo(gestante, 'Gestante: ', text, Gestante),
                 p(''),
                 \enviar
               ])).

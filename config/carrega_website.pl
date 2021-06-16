@@ -8,7 +8,6 @@
 :-initialization(servidor(8000)).
 
 
-
 :-load_files([  gabarito(bootstrap5),
                 gabarito(boot5rest),
                 frontend(pg_entrada),

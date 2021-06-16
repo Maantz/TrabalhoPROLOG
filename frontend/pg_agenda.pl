@@ -15,8 +15,7 @@ agenda(Pedido) :-
         boot5rest,
         [ title('Cadastro - Agenda')],
         [div(class(container),
-            [   
-                \html_requires(css('custom.css')),
+            [   \html_requires(css('custom.css')),
                 \html_requires(js('comum.js')),
                 p(''),
                 p(''),
@@ -65,7 +64,9 @@ editar_agenda(AtomId, Pedido):-
                 \html_requires(css('custom.css')),
                 h1(class("my-5 text-center pforms"),
                     'Agendas'),
-                \form_edicao_agenda(Schedule_id, Date, Datetime, Reason, Notes, Phone, RotaDeRetorno)
+                \form_edicao_agenda(Schedule_id, Date, Datetime, Reason, Notes, Phone, RotaDeRetorno),
+                p(''),
+                \retornar
               ]) ])
     ; throw(http_reply(not_found(Schedule_id)))
     ).
@@ -76,16 +77,16 @@ form_edicao_agenda(Schedule_id, Date, Datetime, Reason, Notes, Phone, RotaDeReto
                 onsubmit("redirecionaResposta( event, '~w' )" - RotaDeRetorno),
                 action('/api/v1/schedules/~w' - Schedule_id) ],
               [ \metodo_de_envio('PUT'),
-                \campo_nao_editavel(schedule_id, 'Schedule_id', text, Schedule_id),
-                \campo(Date, 'Data: ', text, Date),
+                \campo_nao_editavel(schedule_id, 'Id', text, Schedule_id),
+                \campo(date, 'Data: ', text, Date),
                 p(''),
-                \campo(Datetime, 'Horarios: ', text, Datetime),
+                \campo(datetime, 'Horarios: ', text, Datetime),
                 p(''),
-                \campo(Reason, 'Motivo: ', text, Reason),
+                \campo(reason, 'Motivo: ', text, Reason),
                 p(''),
-                \campo(Notes, 'Anotacoes: ', text, Notes),
+                \campo(notes, 'Anotacoes: ', text, Notes),
                 p(''),
-                \campo(Phone, 'Telefone: ', text, Phone),
+                \campo(phone, 'Telefone: ', text, Phone),
                 p(''),
                 \enviar
               ])).

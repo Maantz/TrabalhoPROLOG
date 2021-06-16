@@ -4,7 +4,6 @@
 :- use_module(tabela_usuarios).
 
 
-
 entrada_usuario(_Pedido):-
     reply_html_page(
         boot5rest,
@@ -12,12 +11,8 @@ entrada_usuario(_Pedido):-
         [ \html_requires(css('custom.css')),
           \html_requires(css('entrada.css')),
           \html_requires(js('comum.js')),
-          h2('Página dos Usuários'),
+          h1('Espaco'),
           \navegacao('menu-topo'),
-          p(''),
-          p(''),
-          p(''),
-          p(''),
           \tabela_usuarios
         ]
     ).

@@ -11,7 +11,7 @@ entrada_dentista(_Pedido):-
         [ \html_requires(css('custom.css')),
           \html_requires(css('entrada.css')),
           \html_requires(js('comum.js')),
-          h2('Pagina dos Dentistas'),
+          h1('Espaco'),
           \navegacao('menu-topo'),
           \tabela_dentistas
         ]

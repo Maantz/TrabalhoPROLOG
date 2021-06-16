@@ -53,7 +53,9 @@ editar_usuario(AtomId, Pedido):-
                 \html_requires(css('custom.css')),
                 h1(class("my-5 text-center pforms"),
                   'Usuarios'),
-                \form_edicao_usuario(Usuario_id, Nome, Email, Senha, RotaDeRetorno)
+                \form_edicao_usuario(Usuario_id, Nome, Email, Senha, RotaDeRetorno),
+                p(''),
+                \retornar
               ]) ])
     ; throw(http_reply(not_found(Usuario_id)))
     ).
@@ -65,7 +67,7 @@ form_edicao_usuario(Usuario_id, Nome, Email, Senha, RotaDeRetorno) -->
                 onsubmit("redirecionaResposta( event, '~w' )" - RotaDeRetorno),
                 action('/api/v1/usuarios/~w' - Usuario_id) ],
               [ \metodo_de_envio('PUT'),
-                \campo_nao_editavel(usuario_id, 'Usuario_id', text, Usuario_id),
+                \campo_nao_editavel(usuario_id, 'Id', text, Usuario_id),
                 p(''),
                 \campo(nome,  'Nome', text,  Nome),
                 p(''),

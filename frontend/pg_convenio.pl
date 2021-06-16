@@ -62,7 +62,9 @@ editar_convenio(AtomId, Pedido):-
                 \html_requires(css('custom.css')),
                 h1(class("my-5 text-center pforms"),
                     'Convenios'),
-                \form_edicao_convenio(Convenio_id, CodConvenio, RazaoSocial, RotaDeRetorno)
+                \form_edicao_convenio(Convenio_id, CodConvenio, RazaoSocial, RotaDeRetorno),
+                p(''),
+                \retornar
               ]) ])
     ; throw(http_reply(not_found(Convenio_id)))
     ).

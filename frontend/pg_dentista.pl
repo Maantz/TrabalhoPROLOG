@@ -54,7 +54,9 @@ editar_dentista(AtomId, Pedido):-
                 \html_requires(css('custom.css')),
                 h1(class("my-5 text-center pforms"),
                     'Dentistas'),
-                \form_edicao_dentista(Dentista_id, CRO, RotaDeRetorno)
+                \form_edicao_dentista(Dentista_id, CRO, RotaDeRetorno),
+                p(''),
+                \retornar
               ]) ])
     ; throw(http_reply(not_found(Dentista_id)))
     ).
