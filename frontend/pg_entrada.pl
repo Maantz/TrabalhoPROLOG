@@ -8,8 +8,7 @@ entrada(_):-
         boot5rest,
         [ title('Clínica Odontológica')],
         [ div(class(container),
-              [ 
-                \html_requires(css('custom.css')),
+              [ \html_requires(css('custom.css')),
                 \navegacao('menu-topo'),
                 \propaganda
               ]) ]).
