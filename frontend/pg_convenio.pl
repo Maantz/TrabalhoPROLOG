@@ -60,18 +60,19 @@ editar_convenio(AtomId, _Pedido):-
               [ \html_requires(js('rest.js')),
                 \html_requires(js('comum.js')),
                 h1('Convenios'),
-                \form_convenio(Convenio_id, CodConvenio, RazaoSocial)
+                \form_edicao_convenio(Convenio_id, CodConvenio, RazaoSocial)
               ]) ])
     ; throw(http_reply(not_found(Convenio_id)))
     ).
 
 
-form_convenio(Convenio_id, CodConvenio, RazaoSocial) -->
+form_edicao_convenio(Convenio_id, CodConvenio, RazaoSocial, RotaDeRetorno) -->
     html(form([ id('convenio-form'),
-                onsubmit("redirecionaResposta( event, '/' )"),
+                onsubmit("redirecionaResposta( event, '~w' )" - RotaDeRetorno),
                 action('/api/v1/convenios/~w' - Convenio_id) ],
               [ \metodo_de_envio('PUT'),
-                \campo_nao_editavel(convenio_id, 'Convenio_id', text, Convenio_id),
+                \campo_nao_editavel(convenio_id, 'Id', text, Convenio_id),
+                p(''),
                 \campo(codConvenio, 'Codigo do Convenio: ', text, CodConvenio),
                 p(''),
                 \campo(razaoSocial, 'Razao Social: ', text, RazaoSocial),

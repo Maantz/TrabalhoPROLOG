@@ -41,7 +41,6 @@ form_dentista -->
     ).
 
 
-
 editar_dentista(AtomId, _Pedido):-
     atom_number(AtomId, Dentista_id),
     ( dentista:dentista(Dentista_id, CRO)
@@ -53,19 +52,20 @@ editar_dentista(AtomId, _Pedido):-
               [ \html_requires(js('rest.js')),
                 \html_requires(js('custom.js')),
                 h1('Dentistas'),
-                \form_dentista(Dentista_id, CRO)
+                \form_edicao_dentista(Dentista_id, CRO)
               ]) ])
     ; throw(http_reply(not_found(Dentista_id)))
     ).
 
 
-form_dentista(Dentista_id, CRO) -->
+form_edicao_dentista(Dentista_id, CRO, RotaDeRetorno) -->
     html(form([ id('dentista-form'),
-                onsubmit("redirecionaResposta( event, '/' )"),
+                onsubmit("redirecionaResposta( event, '~w' )" - RotaDeRetorno),
                 action('/api/v1/dentistas/~w' - Dentista_id) ],
               [ \metodo_de_envio('PUT'),
-                \campo_nao_editavel(dentista_id, 'Dentista_id', text, Dentista_id),
-                \campo(CRO, 'CRO: ', text, CRO),
+                \campo_nao_editavel(dentista_id, 'Id', text, Dentista_id),
+                p(''),
+                \campo(cro, 'CRO: ', text, CRO),
                 p(''),
                 \enviar
               ])).

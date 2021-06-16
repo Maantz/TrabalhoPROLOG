@@ -58,20 +58,20 @@ editar_agenda(AtomId, _Pedido):-
     ->
     reply_html_page(
         boot5rest,
-        [ title('Cadastro de Anamnese')],
+        [ title('Cadastro de Agenda')],
         [ div(class(container),
               [ \html_requires(js('rest.js')),
                 \html_requires(js('custom.js')),
-                h1('Anamneses'),
-                \form_agenda(Schedule_id, Date, Datetime, Reason, Notes, Phone)
+                h1('Agendas'),
+                \form_edicao_agenda(Schedule_id, Date, Datetime, Reason, Notes, Phone)
               ]) ])
     ; throw(http_reply(not_found(Schedule_id)))
     ).
 
 
-form_agenda(Schedule_id, Date, Datetime, Reason, Notes, Phone) -->
+form_edicao_agenda(Schedule_id, Date, Datetime, Reason, Notes, Phone, RotaDeRetorno) -->
     html(form([ id('agenda-form'),
-                onsubmit("redirecionaResposta( event, '/' )"),
+                onsubmit("redirecionaResposta( event, '~w' )" - RotaDeRetorno),
                 action('/api/v1/schedules/~w' - Schedule_id) ],
               [ \metodo_de_envio('PUT'),
                 \campo_nao_editavel(schedule_id, 'Schedule_id', text, Schedule_id),
