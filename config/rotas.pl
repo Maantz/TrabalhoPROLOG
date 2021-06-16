@@ -5,11 +5,6 @@
 :- ensure_loaded(caminhos).
 
 
-apelido_rota(Apelido, RotaCompleta):-
-    http_absolute_location(Apelido, Rota, []),
-    atom_concat(Rota, '/', RotaCompleta).
-
-
 :-multifile http:location/3.
 :-dynamic   http:location/3.
 

@@ -31,7 +31,7 @@
         email:string,
         %tipo_Usuario:string,
         %login:string,
-        senha:string
+        senha:atom
     ).
 
 

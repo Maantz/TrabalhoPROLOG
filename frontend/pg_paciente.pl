@@ -15,7 +15,6 @@ paciente(Pedido) :-
         [title('Cadastro - Paciente')],
         [div(class(container),
             [   \html_requires(css('custom.css')),
-                \html_requires(js('rest.js')),
                 \html_requires(js('comum.js')),
                 p(''),
                 p(''),
@@ -59,8 +58,7 @@ editar_paciente(AtomId, Pedido):-
         boot5rest,
         [ title('Cadastro de Novo Paciente')],
         [ div(class(container),
-              [ \html_requires(js('rest.js')),
-                \html_requires(js('comum.js')),
+              [ \html_requires(js('comum.js')),
                 h1('Pacientes'),
                 \form_edicao_paciente(Paciente_id, LoginP, CodConvenio, RotaDeRetorno)
               ]) ])

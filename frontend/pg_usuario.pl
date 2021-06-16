@@ -15,7 +15,6 @@ usuario(Pedido):-
         [ title(' Cadastro de Usuários')],
         [ div(class(container),
               [ \html_requires(css('custom.css')),
-                \html_requires(js('rest.js')),
                 \html_requires(js('comum.js')),
                 p(''),
                 p(''),
@@ -50,8 +49,7 @@ editar_usuario(AtomId, Pedido):-
         boot5rest,
         [ title('Cadastro de Usuario')],
         [ div(class(container),
-              [ \html_requires(js('rest.js')),
-                \html_requires(js('comum.js')),
+              [ \html_requires(js('comum.js')),
                 h1('Usuarios'),
                 \form_edicao_usuario(Usuario_id, Nome, Email, Senha, RotaDeRetorno)
               ]) ])
@@ -67,11 +65,11 @@ form_edicao_usuario(Usuario_id, Nome, Email, Senha, RotaDeRetorno) -->
               [ \metodo_de_envio('PUT'),
                 \campo_nao_editavel(usuario_id, 'Usuario_id', text, Usuario_id),
                 p(''),
-                \campo(nome,  'Nome',   text,  Nome),
+                \campo(nome,  'Nome', text,  Nome),
                 p(''),
                 \campo(email, 'E-mail', email, Email),
                 p(''),
-                \campo(senha, 'Senha',  password, Senha),
+                \campo(senha, 'Senha', password, Senha),
                 p(''),
                 \enviar
               ])).

@@ -5,26 +5,26 @@
 
 
 entrada_paciente(_Pedido):-
-    apelido_rota(root(entrada_paciente), RotaDeRetorno),
     reply_html_page(
         boot5rest,
         [ title('Pagina dos Pacientes')],
         [ \html_requires(css('custom.css')),
           \html_requires(css('entrada.css')),
+          \html_requires(js('comum.js')),
           h2('Pagina dos Pacientes'),
           \navegacao('menu-topo'),
-          \tabela_pacientes(RotaDeRetorno)
+          \tabela_pacientes
         ]
     ).
 
 
-tabela_pacientes(RotaDeRetorno) -->
+tabela_pacientes -->
     html(div(class('row justify-content-center block-2'),
              div( class('col-md-8'),
                   [ \cabeca_da_tabela('Pacientes', '/paciente'),
                     table(class('table table-striped table-responsive-md'),
                         [ \cabecalho_pacientes,
-                          tbody(\corpo_tabela_pacientes(RotaDeRetorno))
+                          tbody(\corpo_tabela_pacientes)
                         ])]))).
 
 
@@ -36,28 +36,28 @@ cabecalho_pacientes -->
                   ]))).
 
 
-corpo_tabela_pacientes(RotaDeRetorno) -->
+corpo_tabela_pacientes -->
     {
         findall( tr([th(scope(row), Id), td(LoginP), td(CodConvenio), td(Acoes)]),
-                 linha_pacientes(Id, LoginP, CodConvenio, Acoes, RotaDeRetorno),
+                 linha_pacientes(Id, LoginP, CodConvenio, Acoes),
                  Linhas )
     },
     html(Linhas).
 
 
-linha_pacientes(Id, LoginP, CodConvenio, Acoes, RotaDeRetorno):-
+linha_pacientes(Id, LoginP, CodConvenio, Acoes):-
     paciente:paciente(Id, LoginP, CodConvenio),
-    acoes_pacientes(Id, RotaDeRetorno, Acoes).
+    acoes_pacientes(Id, Acoes).
 
 
-acoes_pacientes(Id, RotaDeRetorno, Campo):-
+acoes_pacientes(Id, Campo):-
     Campo = [ a([ class('text-success'), title('Alterar'),
                   href('/paciente/editar/~w' - Id),
                   'data-toggle'(tooltip)],
                 [ \lapis ]),
               a([ class('text-danger ms-2'), title('Excluir'),
                   href('/api/v1/pacientes/~w' - Id),
-                  onClick("apagar( event, '~w' )" - RotaDeRetorno),
+                  onClick("apagar( event, '/entrada_paciente' )"),
                   'data-toggle'(tooltip)],
                 [ \lixeira ])
             ].

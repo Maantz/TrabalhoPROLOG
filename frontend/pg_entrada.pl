@@ -6,7 +6,7 @@
 entrada(_):-
     reply_html_page(
         boot5rest,
-        [ title('Clínica Odontlógica')],
+        [ title('Clínica Odontológica')],
         [ div(class(container),
               [ 
                 \html_requires(css('custom.css')),
@@ -31,7 +31,7 @@ propaganda -->
                 ]))).
 
 
-%%Predicados auxiliares para os forms:
+% Predicados auxiliares para os forms:
 enviar -->
     html(div([ class('btn-group botao'), role(group), 'aria-label'('Enviar')],
              [ button([ type(submit),

@@ -15,7 +15,6 @@ convenio(Pedido) :-
         [title('Cadastro - Convenio')],
         [div(class(container),
             [   \html_requires(css('custom.css')),
-                \html_requires(js('rest.js')),
                 \html_requires(js('comum.js')),
                 p(''),
                 p(''),
@@ -59,8 +58,7 @@ editar_convenio(AtomId, Pedido):-
         boot5rest,
         [ title('Cadastro de Novo Convenio')],
         [ div(class(container),
-              [ \html_requires(js('rest.js')),
-                \html_requires(js('comum.js')),
+              [ \html_requires(js('comum.js')),
                 h1('Convenios'),
                 \form_edicao_convenio(Convenio_id, CodConvenio, RazaoSocial, RotaDeRetorno)
               ]) ])

@@ -5,26 +5,26 @@
 
 
 entrada_agenda(_Pedido):-
-    apelido_rota(root(entrada_agenda), RotaDeRetorno),
     reply_html_page(
         boot5rest,
         [ title('Pagina de Agendas')],
         [ \html_requires(css('custom.css')),
           \html_requires(css('entrada.css')),
+          \html_requires(js('comum.js')),
           h2('Pagina de Agendas'),
           \navegacao('menu-topo'),
-          \tabela_agendas(RotaDeRetorno)
+          \tabela_agendas
         ]
     ).
 
 
-tabela_agendas(RotaDeRetorno) -->
+tabela_agendas-->
     html(div(class('row justify-content-center block-2'),
              div( class('col-md-8'),
                   [ \cabeca_da_tabela('Agendas', '/schedule'),
                     table(class('table table-striped table-responsive-md'),
                         [ \cabecalho_agendas,
-                          tbody(\corpo_tabela_agendas(RotaDeRetorno))
+                          tbody(\corpo_tabela_agendas)
                         ])]))).
 
 
@@ -48,28 +48,28 @@ cabecalho_agendas -->
                   ]))).
 
 
-corpo_tabela_agendas(RotaDeRetorno) -->
+corpo_tabela_agendas -->
     {
         findall( tr([th(scope(row), Id), td(Date), td(Datetime), td(Reason), td(Notes), td(Phone), td(Acoes)]),
-                 linha_agendas(Id, Date, Datetime, Reason, Notes, Phone, Acoes, RotaDeRetorno),
+                 linha_agendas(Id, Date, Datetime, Reason, Notes, Phone, Acoes),
                  Linhas )
     },
     html(Linhas).
 
 
-linha_agendas(Id, Date, Datetime, Reason, Notes, Phone, Acoes, RotaDeRetorno):-
+linha_agendas(Id, Date, Datetime, Reason, Notes, Phone, Acoes):-
     schedule:schedule(Id, Date, Datetime, Reason, Notes, Phone),
-    acoes_agendas(Id, RotaDeRetorno, Acoes).
+    acoes_agendas(Id, Acoes).
 
 
-acoes_agendas(Id, RotaDeRetorno, Campo):-
+acoes_agendas(Id, Campo):-
     Campo = [ a([ class('text-success'), title('Alterar'),
                   href('/schedule/editar/~w' - Id),
                   'data-toggle'(tooltip)],
                 [ \lapis ]),
               a([ class('text-danger ms-2'), title('Excluir'),
                   href('/api/v1/schedules/~w' - Id),
-                  onClick("apagar( event, '~w' )" - RotaDeRetorno),
+                  onClick("apagar( event, '/entrada_agenda' )"),
                   'data-toggle'(tooltip)],
                 [ \lixeira ])
             ].
