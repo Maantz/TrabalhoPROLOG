@@ -3134,3 +3134,4 @@ completed(45, 0.015625000000000007, 0, 304, not_modified).
 completed(43, 0.015625, 0, 304, not_modified).
 /*Wed Jun 16 01:46:38 2021*/ request(46, 1623818798.921, [peer(ip(127,0,0,1)),method(get),request_uri('/entrada_usuario'),path('/entrada_usuario'),http_version(1-1),host(localhost),port(8000),connection('keep-alive'),sec_ch_ua('" Not;A Brand";v="99", "Google Chrome";v="91", "Chromium";v="91"'),sec_ch_ua_mobile('?0'),upgrade_insecure_requests('1'),user_agent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.106 Safari/537.36'),sec_fetch_site('same-origin'),sec_fetch_mode(navigate),sec_fetch_user('?1'),sec_fetch_dest(document),referer('http://localhost:8000/')]).
 completed(46, 0.0, 399, 500, error("http_dispatch:call_action/2: Unknown procedure: entrada_usuario/1")).
+server(stopped, 1623818881).

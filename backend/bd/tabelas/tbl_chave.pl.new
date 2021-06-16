@@ -1,6 +1,0 @@
-created(1623818170.033626).
-assert(chave(usuario,9)).
-assert(chave(paciente,1)).
-assert(chave(schedule,1)).
-assert(chave(anamnese,1)).
-assert(chave(usuario,10)).
