@@ -52,7 +52,7 @@ editar_dentista(AtomId, _Pedido):-
               [ \html_requires(js('rest.js')),
                 \html_requires(js('custom.js')),
                 h1('Dentistas'),
-                \form_dentista(Dentista_id, CRO)
+                \form_edicao_dentista(Dentista_id, CRO)
               ]) ])
     ; throw(http_reply(not_found(Dentista_id)))
     ).

@@ -60,7 +60,7 @@ editar_convenio(AtomId, _Pedido):-
               [ \html_requires(js('rest.js')),
                 \html_requires(js('comum.js')),
                 h1('Convenios'),
-                \form_convenio(Convenio_id, CodConvenio, RazaoSocial)
+                \form_edicao_convenio(Convenio_id, CodConvenio, RazaoSocial)
               ]) ])
     ; throw(http_reply(not_found(Convenio_id)))
     ).

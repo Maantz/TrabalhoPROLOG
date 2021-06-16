@@ -41,7 +41,7 @@ form_usuario(RotaDeRetorno) -->
               ])).
 
 
-editar_usuario(AtomId, _Pedido):-
+editar_usuario(AtomId, Pedido):-
     (memberchk(referer(RotaDeRetorno), Pedido) ; RotaDeRetorno = '/' ),
     atom_number(AtomId, Usuario_id),
     ( usuario:usuario(Usuario_id, Nome, Email, Senha)
@@ -60,7 +60,7 @@ editar_usuario(AtomId, _Pedido):-
 
 
 
-form_edicao_usuario(Usuario_id, Nome, Email, Senha, RotaDeRetorno) -->
+form_edicao_usuario(Usuario_id, Nome, Email, _Senha, RotaDeRetorno) -->
     html(form([ id('usuario-form'),
                 onsubmit("redirecionaResposta( event, '~w' )" - RotaDeRetorno),
                 action('/api/v1/usuarios/~w' - Usuario_id) ],

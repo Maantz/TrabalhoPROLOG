@@ -1,4 +1,4 @@
-created(1623814344.374456).
+created(1623816261.804138).
 assert(chave(usuario,9)).
 assert(chave(paciente,1)).
 assert(chave(schedule,1)).

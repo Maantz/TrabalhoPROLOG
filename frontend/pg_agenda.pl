@@ -63,7 +63,7 @@ editar_agenda(AtomId, _Pedido):-
               [ \html_requires(js('rest.js')),
                 \html_requires(js('custom.js')),
                 h1('Agendas'),
-                \form_agenda(Schedule_id, Date, Datetime, Reason, Notes, Phone)
+                \form_edicao_agenda(Schedule_id, Date, Datetime, Reason, Notes, Phone)
               ]) ])
     ; throw(http_reply(not_found(Schedule_id)))
     ).

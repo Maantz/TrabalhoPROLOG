@@ -60,7 +60,7 @@ editar_paciente(AtomId, _Pedido):-
               [ \html_requires(js('rest.js')),
                 \html_requires(js('custom.js')),
                 h1('Pacientes'),
-                \form_paciente(Paciente_id, LoginP, CodConvenio)
+                \form_edicao_paciente(Paciente_id, LoginP, CodConvenio)
               ]) ])
     ; throw(http_reply(not_found(Paciente_id)))
     ).
