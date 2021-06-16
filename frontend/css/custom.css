@@ -15,7 +15,8 @@ body {
 }
 
 .block-1
-{
+{   
+    margin-top: 20px;
     padding-top: 60px;
     background-color: #004780;
     border-radius: 10px;
@@ -26,11 +27,26 @@ body {
 }
 
 .block-2
-{
-    background-color: #e9e2e0;
+{   
+    margin-top: 15px;
+    padding-top: 10px;
+    background-color:white;
+    border-radius: 10px;
 }
 
 .block-3
 {
     background-color: #001f68;
+}
+.botao{
+    background-color: #004780;
+    border-color: #20dad8;
+    color:#20dad8;
+    border-width: 1.5px;
+}
+.headtables{
+    color:#001f68;
+}
+.nomeclinica{
+    color:#20dad8;
 }

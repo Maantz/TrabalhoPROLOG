@@ -14,9 +14,13 @@ dentista(_Pedido):-
         [title('Clinica Odontologica')],
         [div(class(container),
             [   \html_requires(js('rest.js')),
-                \html_requires(js('comum.js')),
+                \html_requires(js('custom.js')),
+                p(''),
+                p(''),
+                p(''),
+                p(''),
                 h1(class("my-5 text-center"),
-                    'Cadastro de Dentista'),
+                    'Cadastro de Novo Dentista'),
             \form_dentista,
             p(''),
             \retornar])]
@@ -46,7 +50,7 @@ editar_dentista(AtomId, _Pedido):-
         [ title('Cadastro de Dentista')],
         [ div(class(container),
               [ \html_requires(js('rest.js')),
-                \html_requires(js('comum.js')),
+                \html_requires(js('custom.js')),
                 h1('Dentistas'),
                 \form_dentista(Dentista_id, CRO)
               ]) ])

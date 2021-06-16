@@ -27,10 +27,9 @@ propaganda -->
                      ]),
                    p(class(lead),
                      ['Email para entrar em contato']),
-                   p(class(lead), 'Volte sempre!'),
-                   \home
+                   p(class(lead), 'Volte sempre!')
                 ]))).
-
+/*
 home--> 
     html(div(
         [
@@ -55,8 +54,7 @@ link_tabelaUsuario -->
     html(a([class(['nav-link']),
             href('/tab_usuarios')],
             'Tabela de Usuários')).
-
-
+*/
 /*
 cadastroUsuario(_Pedido):-
     reply_html_page(
@@ -71,33 +69,6 @@ cadastroUsuario(_Pedido):-
             \retorna_home])]
     ).
 */
-
-campo(Nome, Rotulo, Tipo) -->
-    html(div(class('mb-3'),
-             [ label([ for(Nome), class('form-label') ], Rotulo),
-               input([ type(Tipo), class('form-control'),
-                       id(Nome), name(Nome)])
-             ] )).
-
-
-enviar_ou_cancelar(RotaDeRetorno) -->
-    html(div([ class('btn-group'), role(group), 'aria-label'('Enviar ou cancelar')],
-             [ button([ type(submit),
-                        class('btn btn-outline-primary')], 'Enviar'),
-               a([ href(RotaDeRetorno),
-                   class('ms-3 btn btn-outline-danger')], 'Cancelar')
-            ])).
-
-
-metodo_de_envio(Metodo) -->
-    html(input([type(hidden), name('_metodo'), value(Metodo)])).
-
-
-
-
-
-
-
 /*
 cadastro_formulario-->
     html(form([id('usuario-form'),
@@ -124,15 +95,7 @@ cadastro_formulario-->
 
                     \campo(login, 'Login', number),
                     \campo(senha, 'Senha', password),
-                    \enviar_ou_cancelar('/')
+                    \enviar
                 ])
     ).
 */
-
-retorna_home -->
-    html(div(class(row),
-                a([class(['btn', 'btn-primary']), href('/')],
-                    'Voltar para o Inicio')
-            )
-        ).
-

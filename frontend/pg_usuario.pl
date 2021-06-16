@@ -8,18 +8,25 @@
 :- encoding(utf8).
 
 
-usuario(_Pedido):-
+usuario(Pedido):-
     (memberchk(referer(RotaDeRetorno), Pedido) ; RotaDeRetorno = '/' ),
     reply_html_page(
         boot5rest,
         [ title(' Cadastro de Usuários')],
         [ div(class(container),
               [ \html_requires(js('rest.js')),
-                \html_requires(js('comum.js')),
-                h1('Cadastro de Usuários'),
+                \html_requires(js('custom.js')),
+                p(''),
+                p(''),
+                p(''),
+                p(''),
+                h1(class("my-5 text-center"),
+                    'Cadastro de Novo Usuario'),
                 \form_usuario(RotaDeRetorno),
+                 p(''),
                 \retornar
               ]) ]).
+              
 
 form_usuario(RotaDeRetorno) -->
     html(form([ id('usuario-form'),
@@ -42,7 +49,7 @@ editar_usuario(AtomId, _Pedido):-
         [ title('Cadastro de Usuario')],
         [ div(class(container),
               [ \html_requires(js('rest.js')),
-                \html_requires(js('comum.js')),
+                \html_requires(js('custom.js')),
                 h1('Usuarios'),
                 \form_dentista(Usuario_id, Nome, Email, Senha)
               ]) ])
