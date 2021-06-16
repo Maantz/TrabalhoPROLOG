@@ -19,7 +19,7 @@ entrada_dentista(_Pedido):-
 
 
 tabela_dentistas(RotaDeRetorno) -->
-    html(div(class('row justify-content-center'),
+    html(div(class('row justify-content-center block-2'),
              div( class('col-md-8'),
                   [ \cabeca_da_tabela('Dentistas', '/dentista'),
                     table(class('table table-striped table-responsive-md'),

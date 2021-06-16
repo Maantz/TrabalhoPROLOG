@@ -1,4 +1,4 @@
-/**
+﻿/**
  *  Tratador de evenvos para uma API Rest
  *
  *  @see
@@ -82,7 +82,7 @@ async function enviaFormDataComoJson(url, formData) {
 
   const stringJson = JSON.stringify(formDataSimples);
 
-  console.log('json = ', stringJson);
+  console.log('json enviado = ', stringJson);
 
   const opçõesFetch = {
     method: método,

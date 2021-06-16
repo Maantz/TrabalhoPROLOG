@@ -19,7 +19,7 @@ entrada_anamnese(_Pedido):-
 
 
 tabela_anamneses(RotaDeRetorno) -->
-    html(div(class('row justify-content-center'),
+    html(div(class('row justify-content-center block-2'),
              div( class('col-md-8'),
                   [ \cabeca_da_tabela('Anamneses', '/anamnese'),
                     table(class('table table-striped table-responsive-md'),

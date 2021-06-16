@@ -1,4 +1,4 @@
-/* Esse módulo assume que rest.js tenha sido corregado.
+﻿/* Esse módulo assume que rest.js tenha sido corregado.
  */
 
 /**
@@ -9,9 +9,9 @@
  * @param {Object} resp - corpo da resposta devolvida pelo servidor
  * @param {URL}    rota - a rota a ser seguida
  */
-function redireciona(resposta, rota) {
+ function redireciona(resposta, rota){
 
-  console.log(resposta);
+  console.log('resposta = ', resposta);
   window.location.href = rota; /* redireciona para a rota dada */
 
 }
@@ -29,5 +29,5 @@ function apagar(evento, rotaRedireção) {
   const url = elemento.href;
 
   console.log('delete url = ', url);
-  remover(url, resposta => redireciona(resposta, rotaRedireção));
+  remover( url,  resposta => redireciona(resposta, rotaRedireção));
 }

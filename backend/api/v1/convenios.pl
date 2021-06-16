@@ -39,21 +39,20 @@ convenios(Metodo, Convenio_Id, _Pedido) :-
 
 
 insere_tupla_convenio( _{codConvenio:CodConvenio, razaoSocial:RazaoSocial} ):-
-    convenio:insere(Convenio_Id, CodConvenio, RazaoSocial)
-    -> envia_tupla_convenio(Convenio_Id)
+    convenio:insere(Convenio_ID, CodConvenio, RazaoSocial)
+    -> envia_tupla_convenio(Convenio_ID)
     ;  throw(http_reply(bad_request('URL ausente'))).
 
-
-atualiza_tupla_convenio( _{codConvenio:CodConvenio, razaoSocial:RazaoSocial}, Convenio_Id ):-
-       convenio:atualiza(Convenio_Id, CodConvenio, RazaoSocial)
-    -> envia_tupla_convenio(Convenio_Id)
-    ;  throw(http_reply(not_found(Convenio_Id))).
+atualiza_tupla_convenio( _{codConvenio:CodConvenio, razaoSocial:RazaoSocial}, _Convenio_Id ):-
+       convenio:atualiza(Convenio_ID, CodConvenio, RazaoSocial)
+    -> envia_tupla_convenio(Convenio_ID)
+    ;  throw(http_reply(not_found(_Convenio_ID))).
 
 
 envia_tupla_convenio(Convenio_Id):-
        convenio:convenio(Convenio_Id, CodConvenio, RazaoSocial)
     -> reply_json_dict( _{convenio_id:Convenio_Id, codConvenio:CodConvenio, razaoSocial:RazaoSocial} )
-    ;  throw(http_reply(not_found(Convenio_Id))).
+    ;  throw(http_reply(not_found(_Convenio_Id))).
 
 
 envia_tabela_convenio :-

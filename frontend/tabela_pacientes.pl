@@ -19,7 +19,7 @@ entrada_paciente(_Pedido):-
 
 
 tabela_pacientes(RotaDeRetorno) -->
-    html(div(class('row justify-content-center'),
+    html(div(class('row justify-content-center block-2'),
              div( class('col-md-8'),
                   [ \cabeca_da_tabela('Pacientes', '/paciente'),
                     table(class('table table-striped table-responsive-md'),

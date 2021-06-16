@@ -14,14 +14,15 @@ agenda(_Pedido) :-
         boot5rest,
         [ title('Cadastro - Agenda')],
         [div(class(container),
-            [
+            [   
+                \html_requires(css('custom.css')),
                 \html_requires(js('rest.js')),
-                \html_requires(js('custom.js')),
+                \html_requires(js('comum.js')),
                 p(''),
                 p(''),
                 p(''),
                 p(''),
-                h1(class("my-5 text-center"),
+                h1(class("my-5 text-center pforms"),
                     'Cadastro de Nova Agenda'),
                 \form_agenda,
                 p(''),
@@ -51,7 +52,7 @@ form_agenda -->
 ).
 
 
-editar_schedule(AtomId, _Pedido):-
+editar_agenda(AtomId, _Pedido):-
     atom_number(AtomId, Schedule_id),
     ( schedule:schedule(Schedule_id, Date, Datetime, Reason, Notes, Phone)
     ->

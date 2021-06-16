@@ -51,7 +51,7 @@ insere(Usuario_id, Nome, Email, Senha):-
 remove(Usuario_id):-
     with_mutex(
         usuario,
-        retractall_paciente(Usuario_id, _Nome, _Email, _Senha)
+        retractall_usuario(Usuario_id, _Nome, _Email, _Senha)
     ).
 
 
@@ -59,7 +59,7 @@ atualiza(Usuario_id, Nome, Email, Senha):-
     with_mutex(
         usuario,
         (
-            retract_paciente(Usuario_id, _NomeAnt, _EmailAnt, _SenhaAnt),
-            assert_paciente(Usuario_id, Nome, Email, Senha)
+            retractall_usuario(Usuario_id, _NomeAnt, _EmailAnt, _SenhaAnt),
+            assert_usuario(Usuario_id, Nome, Email, Senha)
         )
     ).
