@@ -50,7 +50,7 @@ editar_usuario(AtomId, Pedido):-
         boot5rest,
         [ title('Cadastro de Usuario')],
         [ div(class(container),
-              [ 
+              [ \html_requires(js('rest.js')),
                 \html_requires(js('comum.js')),
                 h1('Usuarios'),
                 \form_edicao_usuario(Usuario_id, Nome, Email, Senha, RotaDeRetorno)
@@ -60,7 +60,7 @@ editar_usuario(AtomId, Pedido):-
 
 
 
-form_edicao_usuario(Usuario_id, Nome, Email, _Senha, RotaDeRetorno) -->
+form_edicao_usuario(Usuario_id, Nome, Email, Senha, RotaDeRetorno) -->
     html(form([ id('usuario-form'),
                 onsubmit("redirecionaResposta( event, '~w' )" - RotaDeRetorno),
                 action('/api/v1/usuarios/~w' - Usuario_id) ],
@@ -71,7 +71,7 @@ form_edicao_usuario(Usuario_id, Nome, Email, _Senha, RotaDeRetorno) -->
                 p(''),
                 \campo(email, 'E-mail', email, Email),
                 p(''),
-                \campo(senha, 'Senha',  password, ''),
+                \campo(senha, 'Senha',  password, Senha),
                 p(''),
                 \enviar
               ])).

@@ -12,6 +12,7 @@ entrada_usuario(_Pedido):-
         [ title('Página dos Usuários')],
         [ \html_requires(css('custom.css')),
           \html_requires(css('entrada.css')),
+
           h2('Página dos Usuários'),
           \navegacao('menu-topo'),
           p(''),
