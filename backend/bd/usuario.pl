@@ -58,8 +58,9 @@ remove(Usuario_id):-
 atualiza(Usuario_id, Nome, Email, Senha):-
     with_mutex(
         usuario,
-        (
-            retractall_usuario(Usuario_id, _NomeAnt, _EmailAnt, _SenhaAnt),
-            assert_usuario(Usuario_id, Nome, Email, Senha)
+        (   
+            retractall_usuario(Usuario_id, _NomeAnt, _EmailAnt, _Hash),
+            crypto_password_hash(Senha, Hash),
+            assert_usuario(Usuario_id, Nome, Email, Hash)
         )
     ).

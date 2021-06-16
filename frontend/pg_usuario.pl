@@ -73,7 +73,7 @@ form_edicao_usuario(Usuario_id, Nome, Email, Senha, RotaDeRetorno) -->
                 p(''),
                 \campo(email, 'E-mail', email, Email),
                 p(''),
-                \campo(senha, 'Senha', password, Senha),
+                \campo(senha, 'Senha', password, ''),
                 p(''),
                 \enviar
               ])).
