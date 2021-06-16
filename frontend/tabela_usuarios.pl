@@ -12,11 +12,6 @@ entrada_usuario(_Pedido):-
         [ title('Página dos Usuários')],
         [ \html_requires(css('custom.css')),
           \html_requires(css('entrada.css')),
-<<<<<<< HEAD
-          \html_requires(css('rest.js')),
-=======
-
->>>>>>> ba2ea90487f2d1f7d4ef1959aa7189c1c256ef61
           h2('Página dos Usuários'),
           \navegacao('menu-topo'),
           p(''),
