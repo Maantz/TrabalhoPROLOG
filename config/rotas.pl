@@ -33,12 +33,14 @@ http:location(api1, api(v1), []).
 :- http_handler(root(entrada_convenio), entrada_convenio, []).
 :- http_handler(root(entrada_paciente), entrada_paciente, []).
 
+
 :- http_handler(root(dentista), dentista, []).
 :- http_handler(root(usuario), usuario, []).
 :- http_handler(root(schedule), agenda, []).
 :- http_handler(root(anamnese), anamnese, []).
 :- http_handler(root(convenio), convenio, []).
 :- http_handler(root(paciente), paciente, []).
+
 
 :- http_handler(root(dentista/editar/Id), editar_dentista(Id), []).
 :- http_handler(root(usuario/editar/Id), editar_usuario(Id), []).

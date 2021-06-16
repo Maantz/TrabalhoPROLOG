@@ -62,7 +62,9 @@ editar_agenda(AtomId, Pedido):-
         [ div(class(container),
               [ \html_requires(js('comum.js')),
                 h1('Agendas'),
-                \form_edicao_agenda(Schedule_id, Date, Datetime, Reason, Notes, Phone, RotaDeRetorno)
+                \form_edicao_agenda(Schedule_id, Date, Datetime, Reason, Notes, Phone, RotaDeRetorno),
+                p(''),
+                \retornar
               ]) ])
     ; throw(http_reply(not_found(Schedule_id)))
     ).

@@ -63,7 +63,9 @@ editar_anamnese(AtomId, Pedido):-
         [ div(class(container),
               [ \html_requires(js('comum.js')),
                 h1('Anamneses'),
-                \form_edicao_anamnese(Anamnese_id, Medicamento, TipoSangue, Doenca, Alergia, Fumante, Gestante, RotaDeRetorno)
+                \form_edicao_anamnese(Anamnese_id, Medicamento, TipoSangue, Doenca, Alergia, Fumante, Gestante, RotaDeRetorno),
+                p(''),
+                \retornar
               ]) ])
     ; throw(http_reply(not_found(Anamnese_id)))
     ).

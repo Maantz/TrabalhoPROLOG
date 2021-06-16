@@ -61,3 +61,4 @@ envia_tabela_dentista:-
              dentista:dentista(Dentista_id, CRO),
             Tuplas ),
     reply_json_dict(Tuplas).
+    

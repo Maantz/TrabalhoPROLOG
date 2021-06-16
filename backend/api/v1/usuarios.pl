@@ -4,7 +4,6 @@
 :- use_module(bd(usuario), []).
 
 
-
 usuarios(get, '', _Pedido):- !,
     envia_tabela_usuario.
 

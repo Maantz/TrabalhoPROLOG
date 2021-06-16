@@ -11,7 +11,7 @@ entrada_convenio(_Pedido):-
         [ \html_requires(css('custom.css')),
           \html_requires(css('entrada.css')),
           \html_requires(js('comum.js')),
-          h2('Pagina de Convenios'),
+          h1('Espaco'),
           \navegacao('menu-topo'),
           \tabela_convenios
         ]

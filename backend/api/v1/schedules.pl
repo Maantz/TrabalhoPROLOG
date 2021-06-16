@@ -40,7 +40,9 @@ schedules(Metodo, Schedule_id, _Pedido) :-
 
 insere_tupla_schedule( _{ date:Date, datetime:Datetime, reason:Reason, notes:Notes, phone:Phone }):-
     schedule:insere(Schedule_id, Date, Datetime, Reason, Notes, Phone)
-    -> envia_tupla_schedule(Schedule_id).
+    -> envia_tupla_schedule(Schedule_id)
+    ;  throw(http_reply(bad_request('URL ausente'))).
+    
  
 atualiza_tupla_schedule( _{ date:Date, datetime:Datetime,reason:Reason,notes:Notes,phone:Phone }, Schedule_id):-
        schedule:atualiza(Schedule_id, Date, Datetime, Reason, Notes, Phone)
@@ -59,3 +61,4 @@ envia_tabela_schedule :-
              schedule:schedule(Schedule_id,Date, Datetime, Reason, Notes, Phone),
              Tuplas ),
     reply_json_dict(Tuplas).
+

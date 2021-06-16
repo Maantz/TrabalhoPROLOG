@@ -52,7 +52,9 @@ editar_dentista(AtomId, Pedido):-
         [ div(class(container),
               [ \html_requires(js('comum.js')),
                 h1('Dentistas'),
-                \form_edicao_dentista(Dentista_id, CRO, RotaDeRetorno)
+                \form_edicao_dentista(Dentista_id, CRO, RotaDeRetorno),
+                p(''),
+                \retornar
               ]) ])
     ; throw(http_reply(not_found(Dentista_id)))
     ).

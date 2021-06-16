@@ -1,7 +1,9 @@
 ﻿:-use_module(library(http/html_write)).
 :-use_module(library(http/html_head)).
 
+
 :-load_files(gabarito(boot5rest)).
+
 
 entrada(_):-
     reply_html_page(
@@ -12,6 +14,7 @@ entrada(_):-
                 \navegacao('menu-topo'),
                 \propaganda
               ]) ]).
+
 
 propaganda -->
     html(div([ class='container-fluid' ],
@@ -38,6 +41,7 @@ enviar -->
             ])
         ).
 
+
 campo_nao_editavel(Nome, Rotulo, Tipo, Valor) -->
     html(div(class('mb-3 w-25'),
              [ label([ for(Nome), class('form-label')], Rotulo),
@@ -54,6 +58,7 @@ campo(Nome, Rotulo, Tipo) -->
                input([ type(Tipo), class('form-control'),
                        id(Nome), name(Nome)])
              ] )).
+
 
 campo(Nome, Rotulo, Tipo, Valor) -->
     html(div(class('mb-3'),

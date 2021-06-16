@@ -51,7 +51,9 @@ editar_usuario(AtomId, Pedido):-
         [ div(class(container),
               [ \html_requires(js('comum.js')),
                 h1('Usuarios'),
-                \form_edicao_usuario(Usuario_id, Nome, Email, Senha, RotaDeRetorno)
+                \form_edicao_usuario(Usuario_id, Nome, Email, Senha, RotaDeRetorno),
+                p(''),
+                \retornar
               ]) ])
     ; throw(http_reply(not_found(Usuario_id)))
     ).
