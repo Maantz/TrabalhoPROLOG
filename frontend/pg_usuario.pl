@@ -49,7 +49,7 @@ editar_usuario(AtomId, _Pedido):-
         [ title('Cadastro de Usuario')],
         [ div(class(container),
               [ \html_requires(js('rest.js')),
-                \html_requires(js('custom.js')),
+                \html_requires(js('comum.js')),
                 h1('Usuarios'),
                 \form_dentista(Usuario_id, Nome, Email, Senha)
               ]) ])

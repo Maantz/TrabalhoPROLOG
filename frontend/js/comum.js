@@ -18,17 +18,16 @@
 
 
 
-function redirecionaResposta(evento, rotaRedirecao) {
-  enviarDados(evento, resposta => redireciona(resposta, rotaRedirecao));
+function redirecionaResposta(evento, rotaRedireção) {
+  enviarDados(evento, resposta => redireciona(resposta, rotaRedireção));
 }
 
 
-function apagar(evento, rotaRedirecao) {
+function apagar(evento, rotaRedireção) {
   evento.preventDefault();
   const elemento = evento.currentTarget;
   const url = elemento.href;
 
   console.log('delete url = ', url);
-  remover( url,  resposta => redireciona(resposta, rotaRedirecao));
+  remover( url,  resposta => redireciona(resposta, rotaRedireção));
 }
-

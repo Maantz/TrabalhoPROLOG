@@ -46,14 +46,14 @@ insere_tupla_usuario( _{nome:Nome, email:Email, senha:Senha} ):-
 
 
 atualiza_tupla_usuario( _{nome:Nome, email:Email, senha:Senha}, Usuario_id ):-
-    usuario:atualiza(Usuario_id, Nome, Email, Senha)
-    -> envia_tupla_usuario(Usuario_id)
-    ;  throw(http_reply(not_found(Usuario_id))).
+    usuario:atualiza(Usuario_ID, Nome, Email, Senha)
+    -> envia_tupla_usuario(Usuario_ID)
+    ;  throw(http_reply(not_found(Usuario_ID))).
 
 
 envia_tupla_usuario(Usuario_id):-
     usuario:usuario(Usuario_id, Nome, Email, Senha)
-    -> reply_json_dict( _{ usuario:id:Usuario_id, nome:Nome, email:Email, senha:Senha} )
+    -> reply_json_dict( _{ usuario_id:Usuario_id, nome:Nome, email:Email, senha:Senha} )
     ;  throw(http_reply(not_found(Usuario_id))).
 
 
