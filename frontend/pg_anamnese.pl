@@ -16,7 +16,7 @@ anamnese(_Pedido):-
         [div(class(container),
             [ 
                 \html_requires(js('rest.js')),
-                \html_requires(js('custom.js')),
+                \html_requires(js('comum.js')),
                 p(''),
                 p(''),
                 p(''),

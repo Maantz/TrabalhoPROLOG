@@ -4,6 +4,7 @@
 :- use_module(tabela_usuarios).
 
 
+
 entrada_usuario(_Pedido):-
     apelido_rota(root(entrada_usuario), RotaDeRetorno),
     reply_html_page(

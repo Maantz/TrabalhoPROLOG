@@ -5,7 +5,7 @@
                 if(not_loaded) ]).
 
 
-:-initialization(servidor(9000)).
+:-initialization(servidor(8000)).
 
 
 
