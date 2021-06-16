@@ -4,3 +4,9 @@ assert(chave(usuario,6)).
 assert(chave(schedule,4)).
 assert(chave(paciente,3)).
 assert(chave(convenio,2)).
+retractall(chave(schedule,_),1).
+assert(chave(schedule,5)).
+retractall(chave(anamnese,_),1).
+assert(chave(anamnese,3)).
+retractall(chave(convenio,_),1).
+assert(chave(convenio,3)).
