@@ -30,24 +30,41 @@ tabela_usuarios -->
 
 cabecalho_usuarios -->
     html(thead(tr([ th([scope(col)], '#'),
+                    th([scope(col)], 'CPf'),
                     th([scope(col)], 'Nome'),
+                    th([scope(col)], 'Data de Nascimento'),
+                    th([scope(col)], 'Estado'),
+                    th([scope(col)], 'Cidade'),
+                    th([scope(col)], 'Bairro'),
+                    th([scope(col)], 'Rua'),
+                    th([scope(col)], 'Numero'),
+                    th([scope(col)], 'Cep'),
+                    th([scope(col)], 'Telefone'),
+                    th([scope(col)], 'Celular'),
                     th([scope(col)], 'Email'),
+                    th([scope(col)], 'Tipo de Usuário'),
+                    th([scope(col)], 'Login'),
                     th([scope(col)], 'Senha'),
                     th([scope(col)], 'Ações')
                   ]))).
 
-
 corpo_tabela_usuarios-->
     {
-        findall( tr([th(scope(row), Id), td(Nome), td(Email), td(Senha), td(Acoes)]),
-                 linha_usuarios(Id, Nome, Email, Senha, Acoes),
+        findall( tr([th(scope(row), Id), td(Cpf), td(Nome), td(Dt_nasc),
+        td(Estado), td(Cidade), td(Bairro), td(Rua), td(Numero),
+        td(Cep), td(Telefone), td(Celular), 
+        td(Email), td(Tipo_Usuario), td(Login), td(Senha), td(Acoes)]),
+                 linha_usuarios(Id, Cpf, Nome, Dt_nasc, Estado, Cidade, Bairro, 
+                 Rua, Numero, Cep, Telefone, Celular, Email, Tipo_Usuario, Login, Senha, Acoes),
                  Linhas )
     },
     html(Linhas).
 
 
-linha_usuarios(Id, Nome, Email, Senha, Acoes):-
-    usuario:usuario(Id, Nome, Email, Senha),
+linha_usuarios(Id, Cpf, Nome, Dt_nasc, Estado, Cidade, Bairro, 
+                 Rua, Numero, Cep, Telefone, Celular, Email, Tipo_Usuario, Login, Senha, Acoes):-
+    usuario:usuario(Id, Cpf, Nome, Dt_nasc, Estado, Cidade, Bairro, 
+                 Rua, Numero, Cep, Telefone, Celular, Email, Tipo_Usuario, Login, Senha),
     acoes_usuarios(Id, Acoes).
 
 

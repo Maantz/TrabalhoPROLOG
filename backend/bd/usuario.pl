@@ -2,10 +2,10 @@
     usuario,
     [
         carrega_tab/1,
-        usuario/4,
-        insere/4,
+        usuario/16,
+        insere/16,
         remove/1,
-        atualiza/4
+        atualiza/16
     ]
 ).
 
@@ -17,20 +17,20 @@
 :-persistent
     usuario(
         usuario_id:positive_integer,
-        %cpf:positive_integer,
+        cpf:positive_integer,
         nome:string,
-        %dt_nasc: string,
-        %estado: string,
-        %cidade: string,
-        %bairro: string
-        %rua: string,
-        %numero:positeve_integer,
-        %cep:positive_integer,
-        %telefone:positive_integer,
-        %celular:positive_integer,
+        dt_nasc: string,
+        estado: string,
+        cidade: string,
+        bairro: string,
+        rua: string,
+        numero:positeve_integer,
+        cep:positive_integer,
+        telefone:positive_integer,
+        celular:positive_integer,
         email:string,
-        %tipo_Usuario:string,
-        %login:string,
+        tipo_Usuario:string,
+        login:string,
         senha:atom
     ).
 
@@ -42,25 +42,31 @@ carrega_tab(ArqTabela):-
     db_attach(ArqTabela, []).
 
 
-insere(Usuario_id, Nome, Email, Senha):-
+insere(Usuario_id, Cpf, Nome, Dt-nasc, Estado, Cidade, Bairro, Rua, Numero, Cep, 
+        Telefone, Celular, Email, Tipo_Usuario, Login,  Senha):-
     chave:pk(usuario, Usuario_id),
     with_mutex(usuario, (crypto_password_hash(Senha, Hash),
-    assert_usuario(Usuario_id, Nome, Email, Hash))).
+    assert_usuario(Usuario_id, Cpf, Nome, Dt-nasc, Estado, Cidade, Bairro, Rua, Numero, Cep, 
+        Telefone, Celular, Email, Tipo_Usuario, Login,  Hash))).
 
 
 remove(Usuario_id):-
     with_mutex(
         usuario,
-        retractall_usuario(Usuario_id, _Nome, _Email, _Senha)
+        retractall_usuario(Usuario_id, _Cpf, _Nome, _Dt-nasc, _Estado, _Cidade, _Bairro, _Rua, _Numero, _Cep, 
+        _Telefone, _Celular, _Email, _Tipo_Usuario, _Login,  _Senha)
     ).
 
 
-atualiza(Usuario_id, Nome, Email, Senha):-
+atualiza(Usuario_id, Cpf, Nome, Dt-nasc, Estado, Cidade, Bairro, Rua, Numero, Cep, 
+        Telefone, Celular, Email, Tipo_Usuario, Login,  Senha):-
     with_mutex(
         usuario,
         (   
-            retractall_usuario(Usuario_id, _NomeAnt, _EmailAnt, _Hash),
+            retractall_usuario(Usuario_id, _Cpf, _Nome, _Dt-nasc, _Estado, _Cidade, _Bairro, _Rua, _Numero, _Cep, 
+        _Telefone, _Celular, _Email, _Tipo_Usuario, _Login, _Hash),
             crypto_password_hash(Senha, Hash),
-            assert_usuario(Usuario_id, Nome, Email, Hash)
+            assert_usuario(Usuario_id, Cpf, Nome, Dt-nasc, Estado, Cidade, Bairro, Rua, Numero, Cep, 
+        Telefone, Celular, Email, Tipo_Usuario, Login, Hash)
         )
     ).
