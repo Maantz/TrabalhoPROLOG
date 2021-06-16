@@ -42,34 +42,35 @@ form_usuario(RotaDeRetorno) -->
 
 
 editar_usuario(AtomId, _Pedido):-
-    atom_number(AtomId, Usuario_id),
-    ( usuario:usuario(Usuario_id, Nome, Email, Senha)
+    (memberchk(referer(RotaDeRetorno), Pedido) ; RotaDeRetorno = '/' ),
+    atom_number(AtomId, Usuario_ID),
+    ( usuario:usuario(Usuario_ID, Nome, Email, Senha)
     ->
     reply_html_page(
         boot5rest,
         [ title('Cadastro de Usuario')],
         [ div(class(container),
-              [ \html_requires(js('rest.js')),
+              [ 
                 \html_requires(js('comum.js')),
                 h1('Usuarios'),
-                \form_dentista(Usuario_id, Nome, Email, Senha)
+                \form_edicao_usuario(Usuario_ID, Nome, Email, Senha, RotaDeRetorno)
               ]) ])
-    ; throw(http_reply(not_found(Usuario_id)))
+    ; throw(http_reply(not_found(Usuario_ID)))
     ).
 
 
 
-form_usuario(Usuario_id, Nome, Email, Senha) -->
+form_edicao_usuario(Usuario_ID, Nome, Email, Senha, RotaDeRetorno) -->
     html(form([ id('usuario-form'),
-                onsubmit("redirecionaResposta( event, '/' )"),
-                action('/api/v1/usuarios/~w' - Usuario_id) ],
+                onsubmit("redirecionaResposta( event, '~w' )" - RotaDeRetorno),
+                action('/api/v1/usuarios/~w' - Usuario_ID) ],
               [ \metodo_de_envio('PUT'),
-                \campo_nao_editavel(usuario_id, 'Usuario_id', text, Usuario_id),
-                \campo(Nome, 'Nome: ', text, Nome),
+                \campo_nao_editavel(usuario_id, 'Usuario_id', text, Usuario_ID),
+                \campo(nome,  'Nome',   text,  Nome),
                 p(''),
-                \campo(Email, 'E-Mail: ', text, Email),
+                \campo(email, 'E-mail', email, Email),
                 p(''),
-                \campo(Senha, 'Senha: ', text, Senha),
+                \campo(senha, 'Senha',  password, ''),
                 p(''),
                 \enviar
               ])).

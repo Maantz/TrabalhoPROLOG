@@ -56,6 +56,13 @@ campo(Nome, Rotulo, Tipo) -->
                        id(Nome), name(Nome)])
              ] )).
 
+campo(Nome, Rotulo, Tipo, Valor) -->
+    html(div(class('mb-3'),
+             [ label([ for(Nome), class('form-label')], Rotulo),
+               input([ type(Tipo), class('form-control'),
+                       id(Nome), name(Nome), value(Valor)])
+             ] )).
+
 
 metodo_de_envio(Metodo) -->
     html(input([type(hidden), name('_método'), value(Metodo)])).
