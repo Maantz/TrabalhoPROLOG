@@ -58,13 +58,14 @@ editar_dentista(AtomId, _Pedido):-
     ).
 
 
-form_dentista(Dentista_id, CRO) -->
+form_edicao_dentista(Dentista_id, CRO, RotaDeRetorno) -->
     html(form([ id('dentista-form'),
-                onsubmit("redirecionaResposta( event, '/' )"),
+                onsubmit("redirecionaResposta( event, '~w' )" - RotaDeRetorno),
                 action('/api/v1/dentistas/~w' - Dentista_id) ],
               [ \metodo_de_envio('PUT'),
-                \campo_nao_editavel(dentista_id, 'Dentista_id', text, Dentista_id),
-                \campo(CRO, 'CRO: ', text, CRO),
+                \campo_nao_editavel(dentista_id, 'Id', text, Dentista_id),
+                p(''),
+                \campo(cro, 'CRO: ', text, CRO),
                 p(''),
                 \enviar
               ])).

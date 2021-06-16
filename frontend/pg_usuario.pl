@@ -43,8 +43,8 @@ form_usuario(RotaDeRetorno) -->
 
 editar_usuario(AtomId, _Pedido):-
     (memberchk(referer(RotaDeRetorno), Pedido) ; RotaDeRetorno = '/' ),
-    atom_number(AtomId, Usuario_ID),
-    ( usuario:usuario(Usuario_ID, Nome, Email, Senha)
+    atom_number(AtomId, Usuario_id),
+    ( usuario:usuario(Usuario_id, Nome, Email, Senha)
     ->
     reply_html_page(
         boot5rest,
@@ -53,19 +53,20 @@ editar_usuario(AtomId, _Pedido):-
               [ 
                 \html_requires(js('comum.js')),
                 h1('Usuarios'),
-                \form_edicao_usuario(Usuario_ID, Nome, Email, Senha, RotaDeRetorno)
+                \form_edicao_usuario(Usuario_id, Nome, Email, Senha, RotaDeRetorno)
               ]) ])
-    ; throw(http_reply(not_found(Usuario_ID)))
+    ; throw(http_reply(not_found(Usuario_id)))
     ).
 
 
 
-form_edicao_usuario(Usuario_ID, Nome, Email, Senha, RotaDeRetorno) -->
+form_edicao_usuario(Usuario_id, Nome, Email, Senha, RotaDeRetorno) -->
     html(form([ id('usuario-form'),
                 onsubmit("redirecionaResposta( event, '~w' )" - RotaDeRetorno),
-                action('/api/v1/usuarios/~w' - Usuario_ID) ],
+                action('/api/v1/usuarios/~w' - Usuario_id) ],
               [ \metodo_de_envio('PUT'),
-                \campo_nao_editavel(usuario_id, 'Usuario_id', text, Usuario_ID),
+                \campo_nao_editavel(usuario_id, 'Usuario_id', text, Usuario_id),
+                p(''),
                 \campo(nome,  'Nome',   text,  Nome),
                 p(''),
                 \campo(email, 'E-mail', email, Email),

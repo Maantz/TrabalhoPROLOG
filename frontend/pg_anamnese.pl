@@ -69,12 +69,13 @@ editar_anamnese(AtomId, _Pedido):-
     ).
 
 
-form_anamnese(Anamnese_id, Medicamento, TipoSangue, Doenca, Alergia, Fumante, Gestante) -->
+form_edicao_anamnese(Anamnese_id, Medicamento, TipoSangue, Doenca, Alergia, Fumante, Gestante, RotaDeRetorno) -->
     html(form([ id('anamnese-form'),
-                onsubmit("redirecionaResposta( event, '/' )"),
+                onsubmit("redirecionaResposta( event, '~w' )" - RotaDeRetorno),
                 action('/api/v1/anamneses/~w' - Anamnese_id) ],
               [ \metodo_de_envio('PUT'),
                 \campo_nao_editavel(anamnese_id, 'Anamnese_id', text, Anamnese_id),
+                p(''),
                 \campo(Medicamento, 'Medicamento: ', text, Medicamento),
                 p(''),
                 \campo(TipoSangue, 'Tipo Sanguineo: ', text, TipoSangue),

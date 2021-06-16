@@ -66,12 +66,13 @@ editar_paciente(AtomId, _Pedido):-
     ).
 
 
-form_paciente(Paciente_id, LoginP, CodConvenio) -->
+form_edicao_paciente(Paciente_id, LoginP, CodConvenio, RotaDeRetorno) -->
     html(form([ id('paciente-form'),
-                onsubmit("redirecionaResposta( event, '/' )"),
+                onsubmit("redirecionaResposta( event, '~w' )" - RotaDeRetorno),
                 action('/api/v1/pacientes/~w' - Paciente_id) ],
               [ \metodo_de_envio('PUT'),
-                \campo_nao_editavel(paciente_id, 'Paciente_id', text, Paciente_id),
+                \campo_nao_editavel(paciente_id, 'Id', text, Paciente_id),
+                p(''),
                 \campo(loginP, 'Login do Paciente: ', text, LoginP),
                 p(''),
                 \campo(codConvenio, 'Codigo do Convenio: ', text, CodConvenio),
