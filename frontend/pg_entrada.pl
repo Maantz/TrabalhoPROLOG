@@ -6,7 +6,7 @@
 entrada(_):-
     reply_html_page(
         boot5rest,
-        [ title('Clinica Odontologica')],
+        [ title('Clínica Odontlógica')],
         [ div(class(container),
               [ 
                 \html_requires(css('custom.css')),
@@ -21,12 +21,12 @@ propaganda -->
                  [ h1(class('py-5'), 'Sistema para Gerenciamento de Agendamento de Clínica Odontológica'),
                    h2(class('py-5'), 'Seja bem vindo à nossa Clínica!'),
                    p(class(lead),
-                     [ 'Estamos felizes em você acreditar no nosso trabalho.']),
+                     [ 'Muito obrigado por acreditar em nosso trabalho.']),
                    p(class(lead),
-                     [ 'Numero para entrar em contato: '
+                     [ 'Número para entrar em contato: (34) 97070-7070 '
                      ]),
                    p(class(lead),
-                     ['Email para entrar em contato']),
+                     ['Email para entrar em contato: clinica_odonto@gmail.com']),
                    p(class(lead), 'Volte sempre!')
                 ]))).
 
