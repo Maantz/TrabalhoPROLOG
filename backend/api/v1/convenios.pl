@@ -58,6 +58,6 @@ envia_tupla_convenio(Convenio_Id):-
 
 envia_tabela_convenio :-
     findall( _{convenio_id:Convenio_Id, codConvenio:CodConvenio, razaoSocial:RazaoSocial},
-             convenio:convenio(Convenio_Id, CodConvenio,RazaoSocial),
+             convenio:convenio(Convenio_Id, CodConvenio, RazaoSocial),
              Tuplas ),
     reply_json_dict(Tuplas).

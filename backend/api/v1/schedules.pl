@@ -38,14 +38,14 @@ schedules(Metodo, Schedule_id, _Pedido) :-
     throw(http_reply(method_not_allowed(Metodo, Schedule_id))).
 
 
-insere_tupla_schedule( _{ date:Date, datetime:Datetime,reason:Reason,notes:Notes,phone:Phone }):-
+insere_tupla_schedule( _{ date:Date, datetime:Datetime, reason:Reason, notes:Notes, phone:Phone }):-
     schedule:insere(Schedule_ID, Date, Datetime, Reason, Notes, Phone)
     -> envia_tupla_schedule(Schedule_ID).
  
-atualiza_tupla_schedule( _{ date:Date, datetime:Datetime,reason:Reason,notes:Notes,phone:Phone }, _Schedule_id):-
+atualiza_tupla_schedule( _{ date:Date, datetime:Datetime,reason:Reason,notes:Notes,phone:Phone }, Schedule_id):-
        schedule:atualiza(Schedule_ID, Date, Datetime, Reason, Notes, Phone)
     -> envia_tupla_schedule(Schedule_ID)
-    ;  throw(http_reply(not_found(_Schedule_ID))).
+    ;  throw(http_reply(not_found(Schedule_ID))).
 
 
 envia_tupla_schedule(Schedule_id):-
