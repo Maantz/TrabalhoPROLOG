@@ -1,2 +1,2 @@
-created(1623862213.217468).
+created(1623868295.007634).
 assert(paciente(4,"teste","123")).
