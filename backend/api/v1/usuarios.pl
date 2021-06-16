@@ -40,8 +40,8 @@ usuarios(Metodo, Usuario_id, _Pedido) :-
 
 
 insere_tupla_usuario( _{nome:Nome, email:Email, senha:Senha} ):-
-    usuario:insere(Usuario_id, Nome, Email, Senha)
-    -> envia_tupla_usuario(Usuario_id)
+    usuario:insere(Usuario_ID, Nome, Email, Senha)
+    -> envia_tupla_usuario(Usuario_ID)
     ;  throw(http_reply(bad_request('Email ja cadastrado'))).
 
 

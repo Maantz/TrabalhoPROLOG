@@ -58,7 +58,7 @@ editar_convenio(AtomId, _Pedido):-
         [ title('Cadastro de Novo Convenio')],
         [ div(class(container),
               [ \html_requires(js('rest.js')),
-                \html_requires(js('custom.js')),
+                \html_requires(js('comum.js')),
                 h1('Convenios'),
                 \form_convenio(Convenio_id, CodConvenio, RazaoSocial)
               ]) ])
@@ -80,41 +80,3 @@ form_convenio(Convenio_id, CodConvenio, RazaoSocial) -->
               ])).
 
 
-enviar -->
-    html(div([ class('btn-group'), role(group), 'aria-label'('Enviar')],
-             [ button([ type(submit),
-                        class('btn btn-outline-primary')], 'Enviar')
-            ])
-        ).
-
-
-
-campo_nao_editavel(Nome, Rotulo, Tipo, Valor) -->
-    html(div(class('mb-3 w-25'),
-             [ label([ for(Nome), class('form-label')], Rotulo),
-               input([ type(Tipo), class('form-control'),
-                       id(Nome),
-                       value(Valor),
-                       readonly ])
-             ] )).
-
-
-campo(Nome, Rotulo, Tipo) -->
-    html(div(class('mb-3'),
-             [ label([ for(Nome), class('form-label') ], Rotulo),
-               input([ type(Tipo), class('form-control'),
-                       id(Nome), name(Nome)])
-             ] )).
-
-
-metodo_de_envio(Metodo) -->
-    html(input([type(hidden), name('_método'), value(Metodo)])).
-
-
-retornar -->
-    html(div(class(row),
-        a([class(['btn', 'btn-primary']),
-        href('/')],
-        'Retornar ao menu inicial.')
-        )
-    ).

@@ -21,8 +21,8 @@ navegacao(Id) -->
                      div([ class(['collapse', 'navbar-collapse']),
                            id=Id ],
                          [ ul([class='navbar-nav ms-auto mb-2 mb-lg-0'],
-                              [ \nav_item('/', 'Inicio'),
-                                \nav_item('/entrada_usuario', 'Usuario'),
+                              [ \nav_item('/', 'Início'),
+                                \nav_item('/entrada_usuario', 'Usuário'), %arquivo(tabela_usuarios)
                                 \nav_item('/entrada_dentista', 'Dentista'),
                                 \nav_item('/entrada_agenda', 'Agenda'),
                                 \nav_item('/entrada_anamnese', 'Anamnese'),

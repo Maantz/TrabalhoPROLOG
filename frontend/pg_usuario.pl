@@ -2,7 +2,7 @@
 :-use_module(library(http/html_head)).
 
 
-:-ensure_loaded(gabarito(boot5rest)).
+:-load_files(gabarito(boot5rest)).
 
 
 :- encoding(utf8).
@@ -15,7 +15,7 @@ usuario(Pedido):-
         [ title(' Cadastro de Usuários')],
         [ div(class(container),
               [ \html_requires(js('rest.js')),
-                \html_requires(js('custom.js')),
+                \html_requires(js('comum.js')),
                 p(''),
                 p(''),
                 p(''),

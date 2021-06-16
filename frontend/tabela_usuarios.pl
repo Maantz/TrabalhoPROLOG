@@ -1,18 +1,23 @@
-:- use_module(library(http/html_write)).
+﻿:- use_module(library(http/html_write)).
 :- use_module(library(http/html_head)).
 :- use_module(bd(usuario), []).
 :- use_module(tabela_usuarios).
+
 
 
 entrada_usuario(_Pedido):-
     apelido_rota(root(entrada_usuario), RotaDeRetorno),
     reply_html_page(
         boot5rest,
-        [ title('Pagina dos Usuarios')],
+        [ title('Página dos Usuários')],
         [ \html_requires(css('custom.css')),
           \html_requires(css('entrada.css')),
-          h2('Pagina dos Usuarios'),
+          h2('Página dos Usuários'),
           \navegacao('menu-topo'),
+          p(''),
+          p(''),
+          p(''),
+          p(''),
           \tabela_usuarios(RotaDeRetorno)
         ]
     ).
@@ -21,7 +26,7 @@ entrada_usuario(_Pedido):-
 tabela_usuarios(RotaDeRetorno) -->
     html(div(class('row justify-content-center block-2'),
              div( class('col-md-8'),
-                  [ \cabeca_da_tabela('Usuarios', '/usuario'),
+                  [ \cabeca_da_tabela('Usuários', '/usuario'),
                     table(class('table table-striped table-responsive-md'),
                         [ \cabecalho_usuarios,
                           tbody(\corpo_tabela_usuarios(RotaDeRetorno))
@@ -33,7 +38,7 @@ cabecalho_usuarios -->
                     th([scope(col)], 'Nome'),
                     th([scope(col)], 'Email'),
                     th([scope(col)], 'Senha'),
-                    th([scope(col)], 'Acoes')
+                    th([scope(col)], 'Ações')
                   ]))).
 
 
