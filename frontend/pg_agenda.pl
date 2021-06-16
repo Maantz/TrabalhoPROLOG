@@ -7,7 +7,7 @@
 
 
 :- encoding(utf8).
-%<-- ver isso
+
 
 agenda(Pedido) :-
     (memberchk(referer(RotaDeRetorno), Pedido) ; RotaDeRetorno = '/' ),

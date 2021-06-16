@@ -26,7 +26,7 @@ usuario(Pedido):-
                  p(''),
                 \retornar
               ]) ]).
-              
+
 
 form_usuario(RotaDeRetorno)-->
     html(form([ id('usuario-form'),
@@ -61,7 +61,6 @@ editar_usuario(AtomId, Pedido):-
     ).
 
 
-
 form_edicao_usuario(Usuario_id, Nome, Email, Senha, RotaDeRetorno) -->
     html(form([ id('usuario-form'),
                 onsubmit("redirecionaResposta( event, '~w' )" - RotaDeRetorno),
@@ -73,7 +72,7 @@ form_edicao_usuario(Usuario_id, Nome, Email, Senha, RotaDeRetorno) -->
                 p(''),
                 \campo(email, 'E-mail', email, Email),
                 p(''),
-                \campo(senha, 'Senha', password, ''),
+                \campo(senha, 'Senha', password, Senha),
                 p(''),
                 \enviar
               ])).
