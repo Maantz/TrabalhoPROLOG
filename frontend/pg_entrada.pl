@@ -33,9 +33,9 @@ propaganda -->
 
 %%Predicados auxiliares para os forms:
 enviar -->
-    html(div([ class('btn-group'), role(group), 'aria-label'('Enviar')],
+    html(div([ class('btn-group botao'), role(group), 'aria-label'('Enviar')],
              [ button([ type(submit),
-                        class('btn btn-outline-primary')], 'Enviar')
+                        class('btn btn-outline-primary botao')], 'Enviar')
             ])
         ).
 
@@ -63,7 +63,7 @@ metodo_de_envio(Metodo) -->
 
 retornar -->
     html(div(class(row),
-        a([class(['btn', 'btn-primary']),
+        a([class(['btn', 'btn-primary', 'botao']),
         href('/')],
         'Retornar ao menu inicial.')
         )
