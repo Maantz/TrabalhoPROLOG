@@ -6,8 +6,8 @@
 
 
 apelido_rota(Apelido, RotaCompleta):-
-   http_absolute_location(Apelido, Rota, []),
-   atom_concat(Rota, '/', RotaCompleta).
+    http_absolute_location(Apelido, Rota, []),
+    atom_concat(Rota, '/', RotaCompleta).
 
 
 :-multifile http:location/3.
@@ -28,7 +28,6 @@ http:location(api1, api(v1), []).
 :- http_handler( '/favicon.ico',
                  http_reply_file(dir_img('favicon.ico'), []),
                  []).
-
 
 
 :- http_handler(root(.), entrada,   []).

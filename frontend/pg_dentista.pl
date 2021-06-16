@@ -40,7 +40,6 @@ form_dentista -->
     ).
 
 
-
 editar_dentista(AtomId, _Pedido):-
     atom_number(AtomId, Dentista_id),
     ( dentista:dentista(Dentista_id, CRO)
