@@ -52,7 +52,8 @@ form_anamnese -->
         ).
 
 
-editar_anamnese(AtomId, _Pedido):-
+editar_anamnese(AtomId, Pedido):-
+    (memberchk(referer(RotaDeRetorno), Pedido) ; RotaDeRetorno = '/' ),
     atom_number(AtomId, Anamnese_id),
     ( anamnese:anamnese(Anamnese_id, Medicamento, TipoSangue, Doenca, Alergia, Fumante, Gestante)
     ->
@@ -63,7 +64,7 @@ editar_anamnese(AtomId, _Pedido):-
               [ \html_requires(js('rest.js')),
                 \html_requires(js('custom.js')),
                 h1('Anamneses'),
-                \form_edicao_anamnese(Anamnese_id, Medicamento, TipoSangue, Doenca, Alergia, Fumante, Gestante)
+                \form_edicao_anamnese(Anamnese_id, Medicamento, TipoSangue, Doenca, Alergia, Fumante, Gestante, RotaDeRetorno)
               ]) ])
     ; throw(http_reply(not_found(Anamnese_id)))
     ).

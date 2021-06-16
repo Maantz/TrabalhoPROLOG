@@ -49,7 +49,8 @@ form_convenio -->
         ).
 
 
-editar_convenio(AtomId, _Pedido):-
+editar_convenio(AtomId, Pedido):-
+    (memberchk(referer(RotaDeRetorno), Pedido) ; RotaDeRetorno = '/' ),
     atom_number(AtomId, Convenio_id),
     ( convenio:convenio(Convenio_id, CodConvenio, RazaoSocial)
     ->
@@ -60,7 +61,7 @@ editar_convenio(AtomId, _Pedido):-
               [ \html_requires(js('rest.js')),
                 \html_requires(js('comum.js')),
                 h1('Convenios'),
-                \form_edicao_convenio(Convenio_id, CodConvenio, RazaoSocial)
+                \form_edicao_convenio(Convenio_id, CodConvenio, RazaoSocial, RotaDeRetorno)
               ]) ])
     ; throw(http_reply(not_found(Convenio_id)))
     ).

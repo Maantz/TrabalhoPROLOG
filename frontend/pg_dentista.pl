@@ -41,7 +41,8 @@ form_dentista -->
     ).
 
 
-editar_dentista(AtomId, _Pedido):-
+editar_dentista(AtomId, Pedido):-
+    (memberchk(referer(RotaDeRetorno), Pedido) ; RotaDeRetorno = '/' ),
     atom_number(AtomId, Dentista_id),
     ( dentista:dentista(Dentista_id, CRO)
     ->
@@ -52,7 +53,7 @@ editar_dentista(AtomId, _Pedido):-
               [ \html_requires(js('rest.js')),
                 \html_requires(js('custom.js')),
                 h1('Dentistas'),
-                \form_edicao_dentista(Dentista_id, CRO)
+                \form_edicao_dentista(Dentista_id, CRO, RotaDeRetorno)
               ]) ])
     ; throw(http_reply(not_found(Dentista_id)))
     ).

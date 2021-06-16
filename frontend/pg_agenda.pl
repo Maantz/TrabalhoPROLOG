@@ -52,7 +52,8 @@ form_agenda -->
 ).
 
 
-editar_agenda(AtomId, _Pedido):-
+editar_agenda(AtomId, Pedido):-
+    (memberchk(referer(RotaDeRetorno), Pedido) ; RotaDeRetorno = '/' ),
     atom_number(AtomId, Schedule_id),
     ( schedule:schedule(Schedule_id, Date, Datetime, Reason, Notes, Phone)
     ->
@@ -63,7 +64,7 @@ editar_agenda(AtomId, _Pedido):-
               [ \html_requires(js('rest.js')),
                 \html_requires(js('custom.js')),
                 h1('Agendas'),
-                \form_edicao_agenda(Schedule_id, Date, Datetime, Reason, Notes, Phone)
+                \form_edicao_agenda(Schedule_id, Date, Datetime, Reason, Notes, Phone, RotaDeRetorno)
               ]) ])
     ; throw(http_reply(not_found(Schedule_id)))
     ).

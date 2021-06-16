@@ -49,7 +49,8 @@ form_paciente -->
         ).
 
 
-editar_paciente(AtomId, _Pedido):-
+editar_paciente(AtomId, Pedido):-
+    (memberchk(referer(RotaDeRetorno), Pedido) ; RotaDeRetorno = '/' ),
     atom_number(AtomId, Paciente_id),
     ( paciente:paciente(Paciente_id, LoginP, CodConvenio)
     ->
@@ -60,7 +61,7 @@ editar_paciente(AtomId, _Pedido):-
               [ \html_requires(js('rest.js')),
                 \html_requires(js('custom.js')),
                 h1('Pacientes'),
-                \form_edicao_paciente(Paciente_id, LoginP, CodConvenio)
+                \form_edicao_paciente(Paciente_id, LoginP, CodConvenio, RotaDeRetorno)
               ]) ])
     ; throw(http_reply(not_found(Paciente_id)))
     ).
