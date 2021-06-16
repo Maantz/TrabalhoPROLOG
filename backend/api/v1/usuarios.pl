@@ -29,9 +29,9 @@ usuarios(put, AtomId, Pedido):-
 
 
 usuarios(delete, AtomId, _Pedido):-
-    atom_number(AtomId, Usuario_id),
+    atom_number(AtomId, Usuario_ID),
     !,
-    usuario:remove(Usuario_id),
+    usuario:remove(Usuario_ID),
     throw(http_reply(no_content)).
 
 
