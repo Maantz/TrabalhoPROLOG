@@ -30,7 +30,7 @@ tabela_usuarios -->
 
 cabecalho_usuarios -->
     html(thead(tr([ th([scope(col)], '#'),
-                    th([scope(col)], 'CPf'),
+                    th([scope(col)], 'CPF'),
                     th([scope(col)], 'Nome'),
                     th([scope(col)], 'Data de Nascimento'),
                     th([scope(col)], 'Estado'),

@@ -17,17 +17,17 @@
 :-persistent
     usuario(
         usuario_id:positive_integer,
-        cpf:positive_integer,
+        cpf:string,
         nome:string,
         dt_nasc: string,
         estado: string,
         cidade: string,
         bairro: string,
         rua: string,
-        numero:positeve_integer,
-        cep:positive_integer,
-        telefone:positive_integer,
-        celular:positive_integer,
+        numero:string,
+        cep:string,
+        telefone:string,
+        celular:string,
         email:string,
         tipo_Usuario:string,
         login:string,
@@ -42,31 +42,31 @@ carrega_tab(ArqTabela):-
     db_attach(ArqTabela, []).
 
 
-insere(Usuario_id, Cpf, Nome, Dt-nasc, Estado, Cidade, Bairro, Rua, Numero, Cep, 
+insere(Usuario_id, Cpf, Nome, Dt_nasc, Estado, Cidade, Bairro, Rua, Numero, Cep, 
         Telefone, Celular, Email, Tipo_Usuario, Login,  Senha):-
     chave:pk(usuario, Usuario_id),
     with_mutex(usuario, (crypto_password_hash(Senha, Hash),
-    assert_usuario(Usuario_id, Cpf, Nome, Dt-nasc, Estado, Cidade, Bairro, Rua, Numero, Cep, 
+    assert_usuario(Usuario_id, Cpf, Nome, Dt_nasc, Estado, Cidade, Bairro, Rua, Numero, Cep, 
         Telefone, Celular, Email, Tipo_Usuario, Login,  Hash))).
 
 
 remove(Usuario_id):-
     with_mutex(
         usuario,
-        retractall_usuario(Usuario_id, _Cpf, _Nome, _Dt-nasc, _Estado, _Cidade, _Bairro, _Rua, _Numero, _Cep, 
+        retractall_usuario(Usuario_id, _Cpf, _Nome, _Dt_nasc, _Estado, _Cidade, _Bairro, _Rua, _Numero, _Cep, 
         _Telefone, _Celular, _Email, _Tipo_Usuario, _Login,  _Senha)
     ).
 
 
-atualiza(Usuario_id, Cpf, Nome, Dt-nasc, Estado, Cidade, Bairro, Rua, Numero, Cep, 
+atualiza(Usuario_id, Cpf, Nome, Dt_nasc, Estado, Cidade, Bairro, Rua, Numero, Cep, 
         Telefone, Celular, Email, Tipo_Usuario, Login,  Senha):-
     with_mutex(
         usuario,
         (   
-            retractall_usuario(Usuario_id, _Cpf, _Nome, _Dt-nasc, _Estado, _Cidade, _Bairro, _Rua, _Numero, _Cep, 
+            retractall_usuario(Usuario_id, _Cpf, _Nome, _Dt_nasc, _Estado, _Cidade, _Bairro, _Rua, _Numero, _Cep, 
         _Telefone, _Celular, _Email, _Tipo_Usuario, _Login, _Hash),
             crypto_password_hash(Senha, Hash),
-            assert_usuario(Usuario_id, Cpf, Nome, Dt-nasc, Estado, Cidade, Bairro, Rua, Numero, Cep, 
+            assert_usuario(Usuario_id, Cpf, Nome, Dt_nasc, Estado, Cidade, Bairro, Rua, Numero, Cep, 
         Telefone, Celular, Email, Tipo_Usuario, Login, Hash)
         )
     ).

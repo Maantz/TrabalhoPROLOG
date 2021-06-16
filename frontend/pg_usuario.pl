@@ -45,7 +45,7 @@ form_usuario(RotaDeRetorno)-->
                 \campo(telefone, 'Telefone', text),
                 \campo(celular, 'Celular', text),
                 \campo(email, 'E-mail', email),
-                \campo(tipo_Usuario, 'Tipo de Usuario(paciente, dentista, adm, funcionario)', text),
+                \campo(tipo_Usuario, 'Tipo de Usuario (Paciente, Dentista, Admin ou Funcionário)', text),
                 \campo(login, 'Login', text),
                 \campo(senha, 'Senha', password),
                 \enviar
@@ -55,7 +55,7 @@ editar_usuario(AtomId, Pedido):-
     (memberchk(referer(RotaDeRetorno), Pedido) ; RotaDeRetorno = '/' ),
     atom_number(AtomId, Usuario_id),
     ( usuario:usuario(Usuario_id, Cpf, Nome, Dt_nasc, Estado, Cidade, Bairro, Rua, Numero, Cep, 
-        Telefone, Celular, Email, Tipo_Usuario, Login,  Senha)
+        Telefone, Celular, Email, Tipo_Usuario, Login, Senha)
     ->
     reply_html_page(
         boot5rest,
@@ -66,7 +66,7 @@ editar_usuario(AtomId, Pedido):-
                 h1(class("my-5 text-center pforms"),
                   'Usuarios'),
                 \form_edicao_usuario(Usuario_id, Cpf, Nome, Dt_nasc, Estado, Cidade, Bairro, Rua, Numero, Cep, 
-        Telefone, Celular, Email, Tipo_Usuario, Login,  Senha, RotaDeRetorno),
+        Telefone, Celular, Email, Tipo_Usuario, Login, Senha, RotaDeRetorno),
                 p(''),
                 \retornar
               ]) ])
@@ -74,15 +74,15 @@ editar_usuario(AtomId, Pedido):-
     ).
 
 form_edicao_usuario(Usuario_id, Cpf, Nome, Dt_nasc, Estado, Cidade, Bairro, Rua, Numero, Cep, 
-        Telefone, Celular, Email, Tipo_Usuario, Login,  Senha, RotaDeRetorno) -->
+        Telefone, Celular, Email, Tipo_Usuario, Login, Senha, RotaDeRetorno) -->
     html(form([ id('usuario-form'),
                 onsubmit("redirecionaResposta( event, '~w' )" - RotaDeRetorno),
                 action('/api/v1/usuarios/~w' - Usuario_id) ],
               [ \metodo_de_envio('PUT'),
                 \campo_nao_editavel(usuario_id, 'Id', text, Usuario_id),
                 p(''),
-                 \campo_nao_editavel(cpf, 'CPF', text, Cpf),
-                 p(''),
+                \campo(cpf, 'CPF', text, Cpf),
+                p(''),
                 \campo(nome,  'Nome', text,  Nome),
                 p(''),
                 \campo(dt_nasc,  'Data de nascimento', text,  Dt_nasc),
@@ -90,10 +90,6 @@ form_edicao_usuario(Usuario_id, Cpf, Nome, Dt_nasc, Estado, Cidade, Bairro, Rua,
                 \campo(estado,  'estado', text,  Estado),
                 p(''),
                 \campo(cidade,  'Cidade', text,  Cidade),
-                p(''),
-                \campo(bairro,  'Bairro', text,  Bairro),
-                p(''),
-                \campo(rua,  'Rua', text,  Rua),
                 p(''),
                 \campo(bairro,  'Bairro', text,  Bairro),
                 p(''),
@@ -109,7 +105,7 @@ form_edicao_usuario(Usuario_id, Cpf, Nome, Dt_nasc, Estado, Cidade, Bairro, Rua,
                  p(''),
                 \campo(email, 'E-mail', email, Email),
                 p(''),
-                \campo(tipo_Usuario, 'Tipo de usuário(paciente, dentista, admin, funcionario)', text, Tipo_Usuario),
+                \campo(tipo_Usuario, 'Tipo de usuário Paciente, Dentista, Admin ou Funcionário)', text, Tipo_Usuario),
                 p(''),
                 \campo(login, 'Login', text, Login),
                 p(''),

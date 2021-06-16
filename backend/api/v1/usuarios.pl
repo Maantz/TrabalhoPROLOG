@@ -38,38 +38,38 @@ usuarios(Metodo, Usuario_id, _Pedido) :-
     throw(http_reply(method_not_allowed(Metodo, Usuario_id))).
 
 
-insere_tupla_usuario( _{cpf:Cpf, nome:Nome, dt_nasc:Dt-nasc, estado:Estado, cidade:Cidade, bairro:Bairro, rua:Rua,
+insere_tupla_usuario( _{cpf:Cpf, nome:Nome, dt_nasc:Dt_nasc, estado:Estado, cidade:Cidade, bairro:Bairro, rua:Rua,
                          numero:Numero, cep:Cep, telefone:Telefone, celular:Celular, email:Email, tipo_Usuario:Tipo_Usuario,
                          login:Login, senha:Senha} ):-
-    usuario:insere(Usuario_id, Cpf, Nome, Dt-nasc, Estado, Cidade, Bairro, Rua, Numero, Cep, 
+    usuario:insere(Usuario_id, Cpf, Nome, Dt_nasc, Estado, Cidade, Bairro, Rua, Numero, Cep, 
         Telefone, Celular, Email, Tipo_Usuario, Login,  Senha)
     -> envia_tupla_usuario(Usuario_id)
     ;  throw(http_reply(bad_request('Usuario ja cadastrado'))).
 
 
-atualiza_tupla_usuario( _{cpf:Cpf, nome:Nome, dt_nasc:Dt-nasc, estado:Estado, cidade:Cidade, bairro:Bairro, rua:Rua,
+atualiza_tupla_usuario( _{cpf:Cpf, nome:Nome, dt_nasc:Dt_nasc, estado:Estado, cidade:Cidade, bairro:Bairro, rua:Rua,
                          numero:Numero, cep:Cep, telefone:Telefone, celular:Celular, email:Email, tipo_Usuario:Tipo_Usuario,
                          login:Login, senha:Senha}, Usuario_id ):-
-    usuario:atualiza(Usuario_id, Cpf, Nome, Dt-nasc, Estado, Cidade, Bairro, Rua, Numero, Cep, 
-        Telefone, Celular, Email, Tipo_Usuario, Login,  Senha)
+    usuario:atualiza(Usuario_id, Cpf, Nome, Dt_nasc, Estado, Cidade, Bairro, Rua, Numero, Cep, 
+        Telefone, Celular, Email, Tipo_Usuario, Login, Senha)
     -> envia_tupla_usuario(Usuario_id)
     ;  throw(http_reply(not_found(Usuario_id))).
 
 
 envia_tupla_usuario(Usuario_id):-
-    usuario:usuario(Usuario_id, Cpf, Nome, Dt-nasc, Estado, Cidade, Bairro, Rua, Numero, Cep, 
-        Telefone, Celular, Email, Tipo_Usuario, Login,  Senha)
-    -> reply_json_dict( _{ usuario_id:Usuario_id, cpf:Cpf, nome:Nome, dt_nasc:Dt-nasc, estado:Estado, cidade:Cidade, bairro:Bairro, rua:Rua,
+    usuario:usuario(Usuario_id, Cpf, Nome, Dt_nasc, Estado, Cidade, Bairro, Rua, Numero, Cep, 
+        Telefone, Celular, Email, Tipo_Usuario, Login, Senha)
+    -> reply_json_dict( _{ usuario_id:Usuario_id, cpf:Cpf, nome:Nome, dt_nasc:Dt_nasc, estado:Estado, cidade:Cidade, bairro:Bairro, rua:Rua,
                          numero:Numero, cep:Cep, telefone:Telefone, celular:Celular, email:Email, tipo_Usuario:Tipo_Usuario,
                          login:Login, senha:Senha} )
     ;  throw(http_reply(not_found(Usuario_id))).
 
 
 envia_tabela_usuario :-
-    findall( _{ usuario_id:Usuario_id, cpf:Cpf, nome:Nome, dt_nasc:Dt-nasc, estado:Estado, cidade:Cidade, bairro:Bairro, rua:Rua,
+    findall( _{ usuario_id:Usuario_id, cpf:Cpf, nome:Nome, dt_nasc:Dt_nasc, estado:Estado, cidade:Cidade, bairro:Bairro, rua:Rua,
                          numero:Numero, cep:Cep, telefone:Telefone, celular:Celular, email:Email, tipo_Usuario:Tipo_Usuario,
                          login:Login, senha:Senha},
-             usuario:usuario(Usuario_id, Cpf, Nome, Dt-nasc, Estado, Cidade, Bairro, Rua, Numero, Cep, 
+             usuario:usuario(Usuario_id, Cpf, Nome, Dt_nasc, Estado, Cidade, Bairro, Rua, Numero, Cep, 
         Telefone, Celular, Email, Tipo_Usuario, Login,  Senha),
             Tuplas),
     reply_json_dict(Tuplas).
