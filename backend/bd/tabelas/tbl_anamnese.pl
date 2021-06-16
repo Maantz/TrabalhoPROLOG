@@ -1,2 +1,2 @@
-created(1623814344.362457).
+created(1623816276.516279).
 assert(anamnese(1,"Dipirona","A+","N/A","Plazil","sim","nao")).
